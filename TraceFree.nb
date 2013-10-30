@@ -1,11 +1,11 @@
 Notebook[{
 
 Cell[CellGroupData[{
-Cell[TextData[StyleBox["DivFree",
+Cell[TextData[StyleBox["TraceFree",
  FontSlant->"Italic",
  FontColor->RGBColor[1, 0, 0]]], "Title"],
 
-Cell[TextData[StyleBox["Make tensors divergence free at definition time",
+Cell[TextData[StyleBox["Make tensors trace-free at definition time",
  FontColor->RGBColor[0, 0, 1]]], "Subtitle"],
 
 Cell[TextData[{
@@ -16,13 +16,12 @@ http://groups.google.com/group/xAct"
 }], "Subsubtitle"],
 
 Cell[TextData[{
- StyleBox["DivFree",
+ StyleBox["TraceFree",
   FontSlant->"Italic",
   FontColor->RGBColor[1, 0, 0]],
- " is a package to demonstrate using xTension. It adds an option, DivFree, to \
-DefTensor to declare a tensor divergence-free at the time of definition.\n\n\
-",
- StyleBox["DivFree",
+ " is a package to demonstrate using xTension. It adds an option, TraceFree, \
+to DefTensor to declare a tensor trace-free at the time of definition.\n\n",
+ StyleBox["TaceFree",
   FontSlant->"Italic",
   FontColor->RGBColor[1, 0, 0]],
  " is distributed under the GNU General Public License, and runs on top of ",
@@ -43,32 +42,32 @@ Cell[BoxData[
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
-  "2013", ",", "8", ",", "29", ",", "8", ",", "54", ",", 
-   "56.846146`8.507276000030554"}], "}"}]], "Output"]
+  "2013", ",", "10", ",", "30", ",", "11", ",", "56", ",", 
+   "0.696819`6.595694973126635"}], "}"}]], "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"xAct`DivFree`$xTensorVersionExpected", "=", 
+  RowBox[{"xAct`TraceFree`$xTensorVersionExpected", "=", 
    RowBox[{"{", 
     RowBox[{"\"\<1.0.5\>\"", ",", 
      RowBox[{"{", 
       RowBox[{"2013", ",", "1", ",", "27"}], "}"}]}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
- RowBox[{"xAct`DivFree`$Version", "=", 
+ RowBox[{"xAct`TraceFree`$Version", "=", 
   RowBox[{"{", 
    RowBox[{"\"\<0.1.0\>\"", ",", 
     RowBox[{"{", 
-     RowBox[{"2013", ",", "08", ",", "29"}], "}"}]}], "}"}]}]}], "Input",
+     RowBox[{"2013", ",", "10", ",", "30"}], "}"}]}], "}"}]}]}], "Input",
  InitializationCell->True],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"\<\"0.1.0\"\>", ",", 
    RowBox[{"{", 
-    RowBox[{"2013", ",", "8", ",", "29"}], "}"}]}], "}"}]], "Output"]
+    RowBox[{"2013", ",", "10", ",", "30"}], "}"}]}], "}"}]], "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -94,11 +93,11 @@ Cell["1.1. GPL", "Subsubsection"],
 Cell[BoxData[
  RowBox[{
   RowBox[{"(*", " ", 
-   RowBox[{"DivFree", ":", " ", 
+   RowBox[{"TraceFree", ":", " ", 
     RowBox[{
-    "Make", " ", "tensors", " ", "divergence", " ", "free", " ", "at", " ", 
-     "definition", " ", "time"}]}], " ", "*)"}], "\[IndentingNewLine]", 
-  "\[IndentingNewLine]", 
+     RowBox[{"Make", " ", "tensors", " ", "trace"}], "-", 
+     RowBox[{"free", " ", "at", " ", "definition", " ", "time"}]}]}], " ", 
+   "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
   RowBox[{"(*", " ", 
    RowBox[{"Copyright", " ", 
     RowBox[{"(", "C", ")"}], " ", "2013", " ", "Leo", " ", 
@@ -161,17 +160,17 @@ Cell[CellGroupData[{
 Cell["1.2. Info package", "Subsubsection"],
 
 Cell["\<\
-(* :Title: DivFree *)
+(* :Title: TraceFree *)
 
 (* :Author: Leo C. Stein *)
 
-(* :Summary: Make tensors divergence free at definition time. *)
+(* :Summary: Make tensors trace-free at definition time. *)
 
-(* :Brief Discussion: DivFree is a package to demonstrate using xTension. It \
-adds an option, DivFree, to DefTensor to declare a tensor divergence-free at \
+(* :Brief Discussion: TraceFree is a package to demonstrate using xTension. \
+It adds an option, TraceFree, to DefTensor to declare a tensor trace-free at \
 the time of definition. *)
   
-(* :Context: xAct`DivFree` *)
+(* :Context: xAct`TraceFree` *)
 
 (* :Package Version: 0.1.0 *)
 
@@ -181,7 +180,7 @@ the time of definition. *)
 
 (* :Keywords: TODO *)
 
-(* :Source: DivFree.nb *)
+(* :Source: TraceFree.nb *)
 
 (* :Warning: TODO *)
 
@@ -208,7 +207,7 @@ Cell[BoxData[
      RowBox[{"Unevaluated", "[", "xAct`xCore`Private`$LastPackage", "]"}], "===",
       "xAct`xCore`Private`$LastPackage"}], ",", 
     RowBox[{
-    "xAct`xCore`Private`$LastPackage", "=", "\"\<xAct`DivFree`\>\""}]}], 
+    "xAct`xCore`Private`$LastPackage", "=", "\"\<xAct`TraceFree`\>\""}]}], 
    "]"}], ";"}]], "Input",
  InitializationCell->True],
 
@@ -216,7 +215,7 @@ Cell[CellGroupData[{
 
 Cell[BoxData["xAct`xCore`Private`$LastPackage"], "Input"],
 
-Cell[BoxData["\<\"xAct`DivFree`\"\>"], "Output"]
+Cell[BoxData["\<\"xAct`TraceFree`\"\>"], "Output"]
 }, Open  ]],
 
 Cell[TextData[{
@@ -239,7 +238,7 @@ Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"BeginPackage", "[", 
-  RowBox[{"\"\<xAct`DivFree`\>\"", ",", 
+  RowBox[{"\"\<xAct`TraceFree`\>\"", ",", 
    RowBox[{"{", 
     RowBox[{
     "\"\<xAct`xTensor`\>\"", ",", "\"\<xAct`xPerm`\>\"", ",", 
@@ -254,12 +253,11 @@ Cell[BoxData["\<\"------------------------------------------------------------\
 Cell[BoxData[
  InterpretationBox[
   RowBox[{"\<\"Package xAct`xPerm`  version \"\>", 
-   "\[InvisibleSpace]", "\<\"1.2.0\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
+   "\[InvisibleSpace]", "\<\"1.2.1\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
    "\[InvisibleSpace]", 
    RowBox[{"{", 
-    RowBox[{"2013", ",", "1", ",", "27"}], "}"}]}],
-  SequenceForm["Package xAct`xPerm`  version ", "1.2.0", ", ", {2013, 1, 27}],
-  
+    RowBox[{"2013", ",", "7", ",", "1"}], "}"}]}],
+  SequenceForm["Package xAct`xPerm`  version ", "1.2.1", ", ", {2013, 7, 1}],
   Editable->False]], "Print"],
 
 Cell[BoxData["\<\"CopyRight (C) 2003-2013, Jose M. Martin-Garcia, under the \
@@ -275,19 +273,18 @@ Cell[BoxData["\<\"------------------------------------------------------------\
 Cell[BoxData[
  InterpretationBox[
   RowBox[{"\<\"Package xAct`xTensor`  version \"\>", 
-   "\[InvisibleSpace]", "\<\"1.0.5\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
+   "\[InvisibleSpace]", "\<\"1.1.0\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
    "\[InvisibleSpace]", 
    RowBox[{"{", 
-    RowBox[{"2013", ",", "1", ",", "30"}], "}"}]}],
-  SequenceForm[
-  "Package xAct`xTensor`  version ", "1.0.5", ", ", {2013, 1, 30}],
+    RowBox[{"2013", ",", "9", ",", "1"}], "}"}]}],
+  SequenceForm["Package xAct`xTensor`  version ", "1.1.0", ", ", {2013, 9, 1}],
   Editable->False]], "Print"],
 
 Cell[BoxData["\<\"CopyRight (C) 2002-2013, Jose M. Martin-Garcia, under the \
 General Public License.\"\>"], "Print"]
 }, Open  ]],
 
-Cell[BoxData["\<\"xAct`DivFree`\"\>"], "Output"]
+Cell[BoxData["\<\"xAct`TraceFree`\"\>"], "Output"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -315,7 +312,7 @@ Cell[BoxData[{
   "]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Print", "[", 
-   RowBox[{"\"\<Package xAct`DivFree`  version \>\"", ",", 
+   RowBox[{"\"\<Package xAct`TraceFree`  version \>\"", ",", 
     RowBox[{"$Version", "[", 
      RowBox[{"[", "1", "]"}], "]"}], ",", "\"\<, \>\"", ",", 
     RowBox[{"$Version", "[", 
@@ -334,13 +331,13 @@ Cell[BoxData["\<\"------------------------------------------------------------\
 
 Cell[BoxData[
  InterpretationBox[
-  RowBox[{"\<\"Package xAct`DivFree`  version \"\>", 
+  RowBox[{"\<\"Package xAct`TraceFree`  version \"\>", 
    "\[InvisibleSpace]", "\<\"0.1.0\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
    "\[InvisibleSpace]", 
    RowBox[{"{", 
-    RowBox[{"2013", ",", "8", ",", "29"}], "}"}]}],
+    RowBox[{"2013", ",", "10", ",", "30"}], "}"}]}],
   SequenceForm[
-  "Package xAct`DivFree`  version ", "0.1.0", ", ", {2013, 8, 29}],
+  "Package xAct`TraceFree`  version ", "0.1.0", ", ", {2013, 10, 30}],
   Editable->False]], "Print"],
 
 Cell[BoxData["\<\"Copyright (C) 2013, Leo C. Stein, under the General Public \
@@ -349,7 +346,7 @@ License.\"\>"], "Print"]
 }, Open  ]],
 
 Cell["\<\
-We specify the context xAct`DivFree` to avoid overriding the Disclaimer of \
+We specify the context xAct`TraceFree` to avoid overriding the Disclaimer of \
 the other packages. However we need to turn off the message General:shdw \
 temporarily:\
 \>", "Text"],
@@ -385,7 +382,7 @@ POSSIBILITY OF SUCH DAMAGES.\>\"", "]"}]}], "\[IndentingNewLine]",
 
 Cell[TextData[{
  "If ",
- StyleBox["DivFree",
+ StyleBox["TraceFree",
   FontSlant->"Italic"],
  " is not being called from other package then write this GPL short \
 disclaimer:"
@@ -397,8 +394,8 @@ Cell[BoxData[
  RowBox[{"If", "[", 
   RowBox[{
    RowBox[{
-   "xAct`xCore`Private`$LastPackage", "===", "\"\<xAct`DivFree`\>\""}], ",", 
-   "\[IndentingNewLine]", 
+   "xAct`xCore`Private`$LastPackage", "===", "\"\<xAct`TraceFree`\>\""}], ",",
+    "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Unset", "[", "xAct`xCore`Private`$LastPackage", "]"}], ";", 
     "\[IndentingNewLine]", 
@@ -439,7 +436,7 @@ Cell[BoxData["$ContextPath"], "Input"],
 
 Cell[BoxData[
  RowBox[{"{", 
-  RowBox[{"\<\"xAct`DivFree`\"\>", ",", "\<\"xAct`xTensor`\"\>", 
+  RowBox[{"\<\"xAct`TraceFree`\"\>", ",", "\<\"xAct`xTensor`\"\>", 
    ",", "\<\"xAct`xPerm`\"\>", ",", "\<\"xAct`xCore`\"\>", 
    ",", "\<\"System`\"\>"}], "}"}]], "Output"]
 }, Open  ]],
@@ -448,7 +445,7 @@ Cell[CellGroupData[{
 
 Cell[BoxData["$Context"], "Input"],
 
-Cell[BoxData["\<\"xAct`DivFree`\"\>"], "Output"]
+Cell[BoxData["\<\"xAct`TraceFree`\"\>"], "Output"]
 }, Open  ]],
 
 Cell["Established connection to external executable?", "Text"],
@@ -488,11 +485,11 @@ public scope.\
 Cell[BoxData[
  RowBox[{
   RowBox[{
-   RowBox[{"DivFree", "::", "usage"}], "=", 
-   "\"\<DivFree is an option for DefTensor to declare a tensor divergence \
-free. Use DivFree->{covd[-a],...} to declare that the tensor is divergence \
-free on index +a with respect to the covariant derivative covd.\>\""}], 
-  ";"}]], "Input",
+   RowBox[{"TraceFree", "::", "usage"}], "=", 
+   "\"\<TraceFree is an option for DefTensor to declare a tensor trace-free. \
+Use TraceFree:>{metricg[-a,-b],...} to declare that the contraction using \
+metricg on indices (+a,+b) vanishes. Use delta[-a,+b] for a trace without \
+metric.\>\""}], ";"}]], "Input",
  InitializationCell->True]
 }, Closed]],
 
@@ -506,7 +503,7 @@ Cell[BoxData[
  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}]], "Input",
  InitializationCell->True],
 
-Cell[BoxData["\<\"xAct`DivFree`Private`\"\>"], "Output"]
+Cell[BoxData["\<\"xAct`TraceFree`Private`\"\>"], "Output"]
 }, Open  ]],
 
 Cell["The reserved words in version 0.1.0 :", "Text"],
@@ -514,11 +511,11 @@ Cell["The reserved words in version 0.1.0 :", "Text"],
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"Names", "[", "\"\<xAct`DivFree`*\>\"", "]"}]], "Input"],
+ RowBox[{"Names", "[", "\"\<xAct`TraceFree`*\>\"", "]"}]], "Input"],
 
 Cell[BoxData[
  RowBox[{"{", 
-  RowBox[{"\<\"DivFree\"\>", ",", "\<\"$Version\"\>", 
+  RowBox[{"\<\"TraceFree\"\>", ",", "\<\"$Version\"\>", 
    ",", "\<\"$xTensorVersionExpected\"\>"}], "}"}]], "Output"]
 }, Open  ]],
 
@@ -536,7 +533,7 @@ Cell[BoxData["$ContextPath"], "Input"],
 
 Cell[BoxData[
  RowBox[{"{", 
-  RowBox[{"\<\"xAct`DivFree`\"\>", ",", "\<\"xAct`xTensor`\"\>", 
+  RowBox[{"\<\"xAct`TraceFree`\"\>", ",", "\<\"xAct`xTensor`\"\>", 
    ",", "\<\"xAct`xPerm`\"\>", ",", "\<\"xAct`xCore`\"\>", 
    ",", "\<\"System`\"\>"}], "}"}]], "Output"]
 }, Open  ]],
@@ -545,7 +542,7 @@ Cell[CellGroupData[{
 
 Cell[BoxData["$Context"], "Input"],
 
-Cell[BoxData["\<\"xAct`DivFree`Private`\"\>"], "Output"]
+Cell[BoxData["\<\"xAct`TraceFree`Private`\"\>"], "Output"]
 }, Open  ]],
 
 Cell["Now this is not being used. Deactivated cell :", "Text"],
@@ -599,7 +596,7 @@ Cell[BoxData[
    RowBox[{
    "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
      "**"}], "*", " ", "2.", " ", "Main", " ", "code", " ", "for", " ", 
-   "DivFree"}], " ", "*****************************)"}]], "Input",
+   "TraceFree"}], " ", "*****************************)"}]], "Input",
  InitializationCell->True],
 
 Cell[CellGroupData[{
@@ -607,7 +604,8 @@ Cell[CellGroupData[{
 Cell["2.1 Modify the Options list for DefTensor", "Subsubsection"],
 
 Cell["\<\
-Add DivFree to the list of Options, if it\[CloseCurlyQuote]s not already there\
+Add TraceFree to the list of Options, if it\[CloseCurlyQuote]s not already \
+there\
 \>", "Text"],
 
 Cell[BoxData[
@@ -617,8 +615,8 @@ Cell[BoxData[
     RowBox[{"FreeQ", "[", 
      RowBox[{
       RowBox[{"First", "/@", 
-       RowBox[{"Options", "[", "DefTensor", "]"}]}], ",", "DivFree"}], "]"}], 
-    ",", "\[IndentingNewLine]", 
+       RowBox[{"Options", "[", "DefTensor", "]"}]}], ",", "TraceFree"}], 
+     "]"}], ",", "\[IndentingNewLine]", 
     RowBox[{
      RowBox[{"Unprotect", "[", "DefTensor", "]"}], ";", "\[IndentingNewLine]", 
      RowBox[{
@@ -626,7 +624,7 @@ Cell[BoxData[
       RowBox[{"Append", "[", 
        RowBox[{
         RowBox[{"Options", "[", "DefTensor", "]"}], ",", 
-        RowBox[{"DivFree", "\[Rule]", 
+        RowBox[{"TraceFree", "\[RuleDelayed]", 
          RowBox[{"{", "}"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
      RowBox[{"Protect", "[", "DefTensor", "]"}], ";"}]}], "]"}], 
   ";"}]], "Input",
@@ -640,69 +638,31 @@ Cell["2.2 Checking input", "Subsubsection"],
 Cell[BoxData[
  RowBox[{
   RowBox[{
-   RowBox[{"DefTensor", "::", "BadDivFreeIndices"}], "=", 
-   "\"\<Indices supplied to DivFree (`1`) do not all appear with opposite \
-character in indices of tensor (`2`).\>\""}], ";"}]], "Input",
+   RowBox[{"DefTensor", "::", "BadTraceFreeXXX"}], "=", "\"\<XXX\>\""}], 
+  ";"}]], "Input",
  InitializationCell->True],
 
 Cell[BoxData[{
  RowBox[{
   RowBox[{
-   RowBox[{"CheckDivFree", "[", 
+   RowBox[{"CheckTraceFree", "[", 
     RowBox[{
      RowBox[{"tensor_", "[", "inds___", "]"}], ",", 
-     RowBox[{"df", ":", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{
-         RowBox[{"_", "?", "CovDQ"}], "[", "_", "]"}], "..."}], "}"}]}]}], 
-    "]"}], ":=", 
+     RowBox[{"tf", ":", 
+      RowBox[{"{", "XXX", "}"}]}]}], "]"}], ":=", 
    RowBox[{"Module", "[", 
     RowBox[{
-     RowBox[{"{", 
-      RowBox[{"dfinds", "=", 
-       RowBox[{"Union", "[", 
-        RowBox[{"First", "/@", "df"}], "]"}]}], "}"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"With", "[", 
-       RowBox[{
-        RowBox[{"{", 
-         RowBox[{"changedfinds", "=", 
-          RowBox[{"ChangeIndex", "/@", "dfinds"}]}], "}"}], ",", 
-        "\[IndentingNewLine]", 
-        RowBox[{"(*", " ", 
-         RowBox[{
-         "Every", " ", "index", " ", "in", " ", "changedfinds", " ", "must", 
-          " ", "be", " ", "in", " ", "inds"}], " ", "*)"}], 
-        "\[IndentingNewLine]", 
-        RowBox[{
-         RowBox[{"If", "[", 
-          RowBox[{
-           RowBox[{
-            RowBox[{"Intersection", "[", 
-             RowBox[{
-              RowBox[{"{", "inds", "}"}], ",", "changedfinds"}], "]"}], "=!=",
-             "changedfinds"}], ",", "\[IndentingNewLine]", 
-           RowBox[{
-            RowBox[{"Throw", "@", 
-             RowBox[{"Message", "[", 
-              RowBox[{
-               RowBox[{"DefTensor", "::", "BadDivFreeIndices"}], ",", 
-               "dfinds", ",", 
-               RowBox[{"{", "inds", "}"}]}], "]"}]}], ";"}]}], 
-          "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", "]"}],
-       ";"}]}], "\[IndentingNewLine]", "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
+     RowBox[{"{", "XXX", "}"}], ",", "\[IndentingNewLine]", "XXX"}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
-   RowBox[{"CheckDivFree", "[", 
-    RowBox[{"_", ",", "df_"}], "]"}], ":=", 
+   RowBox[{"CheckTraceFree", "[", 
+    RowBox[{"_", ",", "tf_"}], "]"}], ":=", 
    RowBox[{"Throw", "@", 
     RowBox[{"Message", "[", 
      RowBox[{
-      RowBox[{"DefTensor", "::", "invalid"}], ",", "df", ",", 
-      "\"\<format for DivFree\>\""}], "]"}]}]}], ";"}]}], "Input",
+      RowBox[{"DefTensor", "::", "invalid"}], ",", "tf", ",", 
+      "\"\<format for TraceFree\>\""}], "]"}]}]}], ";"}]}], "Input",
  InitializationCell->True]
 }, Closed]],
 
@@ -732,15 +692,15 @@ Cell[BoxData[
      RowBox[{"Module", "[", 
       RowBox[{
        RowBox[{"{", 
-        RowBox[{"df", "=", 
+        RowBox[{"tf", "=", 
          RowBox[{"OptionValue", "[", 
           RowBox[{"DefTensor", ",", 
-           RowBox[{"{", "options", "}"}], ",", "DivFree"}], "]"}]}], "}"}], 
+           RowBox[{"{", "options", "}"}], ",", "TraceFree"}], "]"}]}], "}"}], 
        ",", "\[IndentingNewLine]", 
        RowBox[{
-        RowBox[{"CheckDivFree", "[", 
+        RowBox[{"CheckTraceFree", "[", 
          RowBox[{
-          RowBox[{"head", "[", "indices", "]"}], ",", "df"}], "]"}], ";"}]}], 
+          RowBox[{"head", "[", "indices", "]"}], ",", "tf"}], "]"}], ";"}]}], 
       "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
     RowBox[{
@@ -755,43 +715,13 @@ Cell[BoxData[
      RowBox[{"Module", "[", 
       RowBox[{
        RowBox[{"{", 
-        RowBox[{"df", "=", 
+        RowBox[{"tf", "=", 
          RowBox[{"OptionValue", "[", 
           RowBox[{"DefTensor", ",", 
-           RowBox[{"{", "options", "}"}], ",", "DivFree"}], "]"}]}], "}"}], 
+           RowBox[{"{", "options", "}"}], ",", "TraceFree"}], "]"}]}], "}"}], 
        ",", "\[IndentingNewLine]", 
-       RowBox[{
-        RowBox[{"With", "[", 
-         RowBox[{
-          RowBox[{"{", 
-           RowBox[{"rules", "=", 
-            RowBox[{"Flatten", "[", 
-             RowBox[{
-              RowBox[{
-               RowBox[{"MakeRule", "[", 
-                RowBox[{"{", 
-                 RowBox[{
-                  RowBox[{"Evaluate", "[", 
-                   RowBox[{"#", "[", 
-                    RowBox[{"head", "[", "indices", "]"}], "]"}], "]"}], ",", 
-                  "0"}], "}"}], "]"}], "&"}], "/@", "df"}], "]"}]}], "}"}], 
-          ",", "\[IndentingNewLine]", 
-          RowBox[{
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"$DefInfoQ", "&&", 
-              RowBox[{
-               RowBox[{"Length", "[", "rules", "]"}], ">", "0"}]}], ",", 
-             "\[IndentingNewLine]", 
-             RowBox[{
-              RowBox[{"Print", "[", "\"\<Generated rules:\>\"", "]"}], ";", 
-              "\[IndentingNewLine]", 
-              RowBox[{"Print", "[", "rules", "]"}], ";"}]}], 
-            "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
-           RowBox[{"AutomaticRules", "[", 
-            RowBox[{"head", ",", "rules"}], "]"}], ";"}]}], 
-         "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
-      "]"}]}], ";"}]}]}]], "Input",
+       RowBox[{"XXX", ";"}]}], "\[IndentingNewLine]", "]"}]}], 
+    ";"}]}]}]], "Input",
  InitializationCell->True]
 }, Closed]],
 
@@ -805,13 +735,14 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{
    RowBox[{"xTension", "[", 
-    RowBox[{"\"\<DivFree`\>\"", ",", "DefTensor", ",", "\"\<Beginning\>\""}], 
-    "]"}], "=", "DefTensorBeginning"}], ";"}], "\[IndentingNewLine]", 
+    RowBox[{
+    "\"\<TraceFree`\>\"", ",", "DefTensor", ",", "\"\<Beginning\>\""}], "]"}],
+    "=", "DefTensorBeginning"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"xTension", "[", 
-    RowBox[{"\"\<DivFree`\>\"", ",", "DefTensor", ",", "\"\<End\>\""}], "]"}],
-    "=", "DefTensorEnd"}], ";"}]}], "Input",
+    RowBox[{"\"\<TraceFree`\>\"", ",", "DefTensor", ",", "\"\<End\>\""}], 
+    "]"}], "=", "DefTensorEnd"}], ";"}]}], "Input",
  InitializationCell->True]
 }, Closed]]
 }, Open  ]],
@@ -823,7 +754,7 @@ Cell["3. End private and package", "Subsection",
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"Protect", "[", "DivFree", "]"}], ";"}]], "Input",
+  RowBox[{"Protect", "[", "TraceFree", "]"}], ";"}]], "Input",
  InitializationCell->True],
 
 Cell[BoxData[{
@@ -894,108 +825,121 @@ Cell[BoxData[
 }, Open  ]]
 }, Open  ]],
 
-Cell["Define a covariant derivative", "Text"],
+Cell["Define a metric", "Text"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"DefCovD", "[", 
-  RowBox[{"CD", "[", 
-   RowBox[{"-", "a"}], "]"}], "]"}]], "Input"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefCovD", 
-   "\[InvisibleSpace]", "\<\": Defining \"\>", 
-   "\[InvisibleSpace]", "\<\"covariant derivative \"\>", "\[InvisibleSpace]", 
-   
-   RowBox[{"CD", "[", 
-    RowBox[{"-", "a"}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
-   "\[InvisibleSpace]", "\<\"\"\>"}],
-  SequenceForm[
-  "** ", xAct`xTensor`DefCovD, ": Defining ", "covariant derivative ", 
-   $CellContext`CD[-$CellContext`a], ". ", ""],
-  Editable->False]], "Print"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
-   "\[InvisibleSpace]", "\<\": Defining \"\>", 
-   "\[InvisibleSpace]", "\<\"vanishing torsion tensor \"\>", 
-   "\[InvisibleSpace]", 
-   RowBox[{"TorsionCD", "[", 
-    RowBox[{"a", ",", 
-     RowBox[{"-", "b"}], ",", 
-     RowBox[{"-", "c"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
-   "\[InvisibleSpace]", "\<\"\"\>"}],
-  SequenceForm[
-  "** ", xAct`xTensor`DefTensor, ": Defining ", "vanishing torsion tensor ", 
-   $CellContext`TorsionCD[$CellContext`a, -$CellContext`b, -$CellContext`c], 
-   ". ", ""],
-  Editable->False]], "Print"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
-   "\[InvisibleSpace]", "\<\": Defining \"\>", 
-   "\[InvisibleSpace]", "\<\"symmetric Christoffel tensor \"\>", 
-   "\[InvisibleSpace]", 
-   RowBox[{"ChristoffelCD", "[", 
-    RowBox[{"a", ",", 
-     RowBox[{"-", "b"}], ",", 
-     RowBox[{"-", "c"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
-   "\[InvisibleSpace]", "\<\"\"\>"}],
-  SequenceForm[
-  "** ", xAct`xTensor`DefTensor, ": Defining ", 
-   "symmetric Christoffel tensor ", 
-   $CellContext`ChristoffelCD[$CellContext`a, -$CellContext`b, \
--$CellContext`c], ". ", ""],
-  Editable->False]], "Print"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
-   "\[InvisibleSpace]", "\<\": Defining \"\>", 
-   "\[InvisibleSpace]", "\<\"Riemann tensor \"\>", "\[InvisibleSpace]", 
-   RowBox[{"RiemannCD", "[", 
+ RowBox[{"DefMetric", "[", 
+  RowBox[{
+   RowBox[{"-", "1"}], ",", 
+   RowBox[{"met", "[", 
     RowBox[{
      RowBox[{"-", "a"}], ",", 
-     RowBox[{"-", "b"}], ",", 
-     RowBox[{"-", "c"}], ",", "d"}], "]"}], "\[InvisibleSpace]", "\<\". \"\>",
-    "\[InvisibleSpace]", "\<\"Antisymmetric only in the first pair.\"\>"}],
-  SequenceForm[
-  "** ", xAct`xTensor`DefTensor, ": Defining ", "Riemann tensor ", 
-   $CellContext`RiemannCD[-$CellContext`a, -$CellContext`b, -$CellContext`c, \
-$CellContext`d], ". ", "Antisymmetric only in the first pair."],
-  Editable->False]], "Print"],
+     RowBox[{"-", "b"}]}], "]"}], ",", "CD", ",", 
+   RowBox[{"PrintAs", "\[Rule]", "\"\<g\>\""}]}], "]"}]], "Input"],
 
 Cell[BoxData[
  InterpretationBox[
   RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
    "\[InvisibleSpace]", "\<\": Defining \"\>", 
-   "\[InvisibleSpace]", "\<\"non-symmetric Ricci tensor \"\>", 
+   "\[InvisibleSpace]", "\<\"symmetric metric tensor \"\>", 
    "\[InvisibleSpace]", 
-   RowBox[{"RicciCD", "[", 
+   RowBox[{"met", "[", 
     RowBox[{
      RowBox[{"-", "a"}], ",", 
      RowBox[{"-", "b"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
    "\[InvisibleSpace]", "\<\"\"\>"}],
   SequenceForm[
-  "** ", xAct`xTensor`DefTensor, ": Defining ", "non-symmetric Ricci tensor ", 
-   $CellContext`RicciCD[-$CellContext`a, -$CellContext`b], ". ", ""],
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "symmetric metric tensor ", 
+   $CellContext`met[-$CellContext`a, -$CellContext`b], ". ", ""],
   Editable->False]], "Print"],
 
-Cell[BoxData["\<\"** DefCovD:  Contractions of Riemann automatically replaced \
-by Ricci.\"\>"], "Print"]
-}, Open  ]]
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"DefTensor", "::", "invalid"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\({}\\)\[NoBreak] is not a valid \
+\[NoBreak]\\!\\(\\\"format for TraceFree\\\"\\)\[NoBreak].\"\>"}]], \
+"Message", "MSG"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"antisymmetric tensor \"\>", "\[InvisibleSpace]", 
+   
+   RowBox[{"epsilonmet", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}], ",", 
+     RowBox[{"-", "c"}], ",", 
+     RowBox[{"-", "d"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "antisymmetric tensor ", 
+   $CellContext`epsilonmet[-$CellContext`a, -$CellContext`b, -$CellContext`c, \
+-$CellContext`d], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"DefTensor", "::", "invalid"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\({}\\)\[NoBreak] is not a valid \
+\[NoBreak]\\!\\(\\\"format for TraceFree\\\"\\)\[NoBreak].\"\>"}]], \
+"Message", "MSG"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"tetrametric \"\>", "\[InvisibleSpace]", 
+   RowBox[{"Tetramet", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}], ",", 
+     RowBox[{"-", "c"}], ",", 
+     RowBox[{"-", "d"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm["** ", xAct`xTensor`DefTensor, ": Defining ", "tetrametric ", 
+   $CellContext`Tetramet[-$CellContext`a, -$CellContext`b, -$CellContext`c, \
+-$CellContext`d], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"DefTensor", "::", "invalid"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\({}\\)\[NoBreak] is not a valid \
+\[NoBreak]\\!\\(\\\"format for TraceFree\\\"\\)\[NoBreak].\"\>"}]], \
+"Message", "MSG"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Further output of \[NoBreak]\\!\\(\\*StyleBox[\\(DefTensor \
+:: invalid\\), \\\"MessageName\\\"]\\)\[NoBreak] will be suppressed during \
+this calculation. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Dagger", "::", "unknown"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Unknown \[NoBreak]\\!\\(\\\"conjugate of symbol\\\"\\)\
+\[NoBreak] \[NoBreak]\\!\\(Tetramet\\)\[NoBreak].\"\>"}]], "Message", "MSG"]
 }, Open  ]],
 
-Cell["\<\
-Define a symmetric tensor which is divergence free under PD. Notice that \
-symmetry-related rules are automatically generated using MakeRule\
-\>", "Text"],
+Cell["Define a symmetric tensor which is trace-free with met.", "Text"],
 
 Cell[CellGroupData[{
 
@@ -1007,12 +951,12 @@ Cell[BoxData[
    RowBox[{"Symmetric", "[", 
     RowBox[{"{", 
      RowBox[{"a", ",", "b"}], "}"}], "]"}], ",", 
-   RowBox[{"DivFree", "\[Rule]", 
+   RowBox[{"TraceFree", "\[RuleDelayed]", 
     RowBox[{"{", 
-     RowBox[{"PD", "[", 
-      RowBox[{"-", "a"}], "]"}], "}"}]}]}], "]"}]], "Input"],
-
-Cell[CellGroupData[{
+     RowBox[{"met", "[", 
+      RowBox[{
+       RowBox[{"-", "a"}], ",", 
+       RowBox[{"-", "b"}]}], "]"}], "}"}]}]}], "]"}]], "Input"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -1026,124 +970,15 @@ Cell[BoxData[
    $CellContext`T[$CellContext`a, $CellContext`b], ". ", ""],
   Editable->False]], "Print"],
 
-Cell[BoxData["\<\"Generated rules:\"\>"], "Print"],
-
 Cell[BoxData[
- RowBox[{"{", 
+ RowBox[{
+  StyleBox[
+   RowBox[{"DefTensor", "::", "invalid"}], "MessageName"], 
   RowBox[{
-   RowBox[{
-    RowBox[{"HoldPattern", "[", 
-     InterpretationBox[
-      StyleBox[
-       RowBox[{
-        SubscriptBox["\[PartialD]", 
-         UnderscriptBox[
-          UnderscriptBox["a", "_"], "_"]], GridBox[{
-          {"T", 
-           StyleBox[GridBox[{
-              {
-               UnderscriptBox[
-                UnderscriptBox["a", "_"], "_"], 
-               UnderscriptBox[
-                UnderscriptBox["b", "_"], "_"]},
-              {" ", " "}
-             },
-             GridBoxSpacings->{"Columns" -> {
-                 Offset[0.], {
-                  Offset[0.034999999999999996`]}, 
-                 Offset[0.]}, "ColumnsIndexed" -> {}, "Rows" -> {{
-                  Offset[0.]}}, "RowsIndexed" -> {}}],
-            FontSize->9]}
-         },
-         GridBoxAlignment->{
-          "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
-           "Rows" -> {{Center}}, "RowsIndexed" -> {}},
-         GridBoxSpacings->{"Columns" -> {
-             Offset[0.27999999999999997`], {
-              Offset[0.034999999999999996`]}, 
-             Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-             Offset[0.2], {
-              Offset[0.4]}, 
-             Offset[0.2]}, "RowsIndexed" -> {}}]}],
-       ShowAutoStyles->False,
-       AutoSpacing->False],
-      xAct`xTensor`PD[-PatternTest[
-         Pattern[$CellContext`a, 
-          Blank[Symbol]], TangentM4`Q]][
-       $CellContext`T[
-        PatternTest[
-         Pattern[$CellContext`a, 
-          Blank[Symbol]], TangentM4`Q], 
-        PatternTest[
-         Pattern[$CellContext`b, 
-          Blank[Symbol]], TangentM4`Q]]],
-      Editable->False], "]"}], "\[RuleDelayed]", 
-    RowBox[{"Module", "[", 
-     RowBox[{
-      RowBox[{"{", "}"}], ",", "0"}], "]"}]}], ",", 
-   RowBox[{
-    RowBox[{"HoldPattern", "[", 
-     InterpretationBox[
-      StyleBox[
-       RowBox[{
-        SubscriptBox["\[PartialD]", 
-         UnderscriptBox[
-          UnderscriptBox["a", "_"], "_"]], GridBox[{
-          {"T", 
-           StyleBox[GridBox[{
-              {
-               UnderscriptBox[
-                UnderscriptBox["b", "_"], "_"], 
-               UnderscriptBox[
-                UnderscriptBox["a", "_"], "_"]},
-              {" ", " "}
-             },
-             GridBoxSpacings->{"Columns" -> {
-                 Offset[0.], {
-                  Offset[0.034999999999999996`]}, 
-                 Offset[0.]}, "ColumnsIndexed" -> {}, "Rows" -> {{
-                  Offset[0.]}}, "RowsIndexed" -> {}}],
-            FontSize->9]}
-         },
-         GridBoxAlignment->{
-          "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
-           "Rows" -> {{Center}}, "RowsIndexed" -> {}},
-         GridBoxSpacings->{"Columns" -> {
-             Offset[0.27999999999999997`], {
-              Offset[0.034999999999999996`]}, 
-             Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-             Offset[0.2], {
-              Offset[0.4]}, 
-             Offset[0.2]}, "RowsIndexed" -> {}}]}],
-       ShowAutoStyles->False,
-       AutoSpacing->False],
-      xAct`xTensor`PD[-PatternTest[
-         Pattern[$CellContext`a, 
-          Blank[Symbol]], TangentM4`Q]][
-       $CellContext`T[
-        PatternTest[
-         Pattern[$CellContext`b, 
-          Blank[Symbol]], TangentM4`Q], 
-        PatternTest[
-         Pattern[$CellContext`a, 
-          Blank[Symbol]], TangentM4`Q]]],
-      Editable->False], "]"}], "\[RuleDelayed]", 
-    RowBox[{"Module", "[", 
-     RowBox[{
-      RowBox[{"{", "}"}], ",", "0"}], "]"}]}]}], "}"}]], "Print"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   Rules \"\>", "\[InvisibleSpace]", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", "2"}], "}"}], 
-   "\[InvisibleSpace]", "\<\" have been declared as UpValues for \"\>", 
-   "\[InvisibleSpace]", "T", "\[InvisibleSpace]", "\<\".\"\>"}],
-  SequenceForm["   Rules ", 
-   Shallow[{1, 2}], " have been declared as UpValues for ", $CellContext`T, 
-   "."],
-  Editable->False]], "Print"]
-}, Open  ]]
+  ":", " "}], "\<\"\[NoBreak]\\!\\({\\(met[\\(\\(\\(\\(-a\\)\\), \
+\\(\\(-b\\)\\)\\)\\)]\\)}\\)\[NoBreak] is not a valid \
+\[NoBreak]\\!\\(\\\"format for TraceFree\\\"\\)\[NoBreak].\"\>"}]], \
+"Message", "MSG"]
 }, Open  ]],
 
 Cell["Some possible errors:", "Text"],
@@ -1154,10 +989,12 @@ Cell[BoxData[
  RowBox[{"DefTensor", "[", 
   RowBox[{
    RowBox[{"S", "[", "]"}], ",", "M4", ",", 
-   RowBox[{"DivFree", "\[Rule]", 
+   RowBox[{"TraceFree", "\[RuleDelayed]", 
     RowBox[{"{", 
-     RowBox[{"CD", "[", 
-      RowBox[{"-", "a"}], "]"}], "}"}]}]}], "]"}]], "Input"],
+     RowBox[{"met", "[", 
+      RowBox[{
+       RowBox[{"-", "a"}], ",", 
+       RowBox[{"-", "b"}]}], "]"}], "}"}]}]}], "]"}]], "Input"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -1173,72 +1010,11 @@ Cell[BoxData[
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DefTensor", "::", "BadDivFreeIndices"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Indices supplied to DivFree (\[NoBreak]\\!\\({\\(-a\\)}\\)\
-\[NoBreak]) do not all appear with opposite character in indices of tensor (\
-\[NoBreak]\\!\\({}\\)\[NoBreak]).\"\>"}]], "Message", "MSG"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"DefTensor", "[", 
-  RowBox[{
-   RowBox[{"S", "[", "a", "]"}], ",", "M4", ",", 
-   RowBox[{"DivFree", "\[Rule]", 
-    RowBox[{"{", 
-     RowBox[{"CD", "[", "a", "]"}], "}"}]}]}], "]"}]], "Input"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
-   "\[InvisibleSpace]", "\<\": Defining \"\>", 
-   "\[InvisibleSpace]", "\<\"tensor \"\>", "\[InvisibleSpace]", 
-   RowBox[{"S", "[", "a", "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
-   "\[InvisibleSpace]", "\<\"\"\>"}],
-  SequenceForm["** ", xAct`xTensor`DefTensor, ": Defining ", "tensor ", 
-   $CellContext`S[$CellContext`a], ". ", ""],
-  Editable->False]], "Print"],
-
-Cell[BoxData[
- RowBox[{
-  StyleBox[
-   RowBox[{"DefTensor", "::", "BadDivFreeIndices"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Indices supplied to DivFree (\[NoBreak]\\!\\({a}\\)\
-\[NoBreak]) do not all appear with opposite character in indices of tensor (\
-\[NoBreak]\\!\\({a}\\)\[NoBreak]).\"\>"}]], "Message", "MSG"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"DefTensor", "[", 
-  RowBox[{
-   RowBox[{"S", "[", "a", "]"}], ",", "M4", ",", 
-   RowBox[{"DivFree", "\[Rule]", 
-    RowBox[{"{", 
-     RowBox[{"notCD", "[", "a", "]"}], "}"}]}]}], "]"}]], "Input"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
-   "\[InvisibleSpace]", "\<\": Defining \"\>", 
-   "\[InvisibleSpace]", "\<\"tensor \"\>", "\[InvisibleSpace]", 
-   RowBox[{"S", "[", "a", "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
-   "\[InvisibleSpace]", "\<\"\"\>"}],
-  SequenceForm["** ", xAct`xTensor`DefTensor, ": Defining ", "tensor ", 
-   $CellContext`S[$CellContext`a], ". ", ""],
-  Editable->False]], "Print"],
-
-Cell[BoxData[
- RowBox[{
-  StyleBox[
    RowBox[{"DefTensor", "::", "invalid"}], "MessageName"], 
   RowBox[{
-  ":", " "}], "\<\"\[NoBreak]\\!\\({\\(notCD[a]\\)}\\)\[NoBreak] is not a \
-valid \[NoBreak]\\!\\(\\\"format for DivFree\\\"\\)\[NoBreak].\"\>"}]], \
+  ":", " "}], "\<\"\[NoBreak]\\!\\({\\(met[\\(\\(\\(\\(-a\\)\\), \
+\\(\\(-b\\)\\)\\)\\)]\\)}\\)\[NoBreak] is not a valid \
+\[NoBreak]\\!\\(\\\"format for TraceFree\\\"\\)\[NoBreak].\"\>"}]], \
 "Message", "MSG"]
 }, Open  ]],
 
@@ -1247,28 +1023,23 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"DefTensor", "[", 
   RowBox[{
-   RowBox[{"S", "[", 
-    RowBox[{"a", ",", "b"}], "]"}], ",", "M4", ",", 
-   RowBox[{"DivFree", "\[Rule]", 
+   RowBox[{"S", "[", "a", "]"}], ",", "M4", ",", 
+   RowBox[{"TraceFree", "\[RuleDelayed]", 
     RowBox[{"{", 
-     RowBox[{
-      RowBox[{"CD", "[", 
-       RowBox[{"-", "a"}], "]"}], ",", 
-      RowBox[{"CD", "[", 
-       RowBox[{
-        RowBox[{"-", "a"}], ",", 
-        RowBox[{"-", "b"}]}], "]"}]}], "}"}]}]}], "]"}]], "Input"],
+     RowBox[{"met", "[", 
+      RowBox[{
+       RowBox[{"-", "a"}], ",", 
+       RowBox[{"-", "b"}]}], "]"}], "}"}]}]}], "]"}]], "Input"],
 
 Cell[BoxData[
  InterpretationBox[
   RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
    "\[InvisibleSpace]", "\<\": Defining \"\>", 
    "\[InvisibleSpace]", "\<\"tensor \"\>", "\[InvisibleSpace]", 
-   RowBox[{"S", "[", 
-    RowBox[{"a", ",", "b"}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   RowBox[{"S", "[", "a", "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
    "\[InvisibleSpace]", "\<\"\"\>"}],
   SequenceForm["** ", xAct`xTensor`DefTensor, ": Defining ", "tensor ", 
-   $CellContext`S[$CellContext`a, $CellContext`b], ". ", ""],
+   $CellContext`S[$CellContext`a], ". ", ""],
   Editable->False]], "Print"],
 
 Cell[BoxData[
@@ -1276,9 +1047,44 @@ Cell[BoxData[
   StyleBox[
    RowBox[{"DefTensor", "::", "invalid"}], "MessageName"], 
   RowBox[{
-  ":", " "}], "\<\"\[NoBreak]\\!\\({\\(\\(CD[\\(\\(-a\\)\\)]\\)\\), \\(\\(CD[\
-\\(\\(\\(\\(-a\\)\\), \\(\\(-b\\)\\)\\)\\)]\\)\\)}\\)\[NoBreak] is not a \
-valid \[NoBreak]\\!\\(\\\"format for DivFree\\\"\\)\[NoBreak].\"\>"}]], \
+  ":", " "}], "\<\"\[NoBreak]\\!\\({\\(met[\\(\\(\\(\\(-a\\)\\), \
+\\(\\(-b\\)\\)\\)\\)]\\)}\\)\[NoBreak] is not a valid \
+\[NoBreak]\\!\\(\\\"format for TraceFree\\\"\\)\[NoBreak].\"\>"}]], \
+"Message", "MSG"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DefTensor", "[", 
+  RowBox[{
+   RowBox[{"S", "[", "a", "]"}], ",", "M4", ",", 
+   RowBox[{"TraceFree", "\[RuleDelayed]", 
+    RowBox[{"{", 
+     RowBox[{"notMet", "[", 
+      RowBox[{
+       RowBox[{"-", "a"}], ",", 
+       RowBox[{"-", "b"}]}], "]"}], "}"}]}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"tensor \"\>", "\[InvisibleSpace]", 
+   RowBox[{"S", "[", "a", "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm["** ", xAct`xTensor`DefTensor, ": Defining ", "tensor ", 
+   $CellContext`S[$CellContext`a], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"DefTensor", "::", "invalid"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\({\\(notMet[\\(\\(\\(\\(-a\\)\\), \
+\\(\\(-b\\)\\)\\)\\)]\\)}\\)\[NoBreak] is not a valid \
+\[NoBreak]\\!\\(\\\"format for TraceFree\\\"\\)\[NoBreak].\"\>"}]], \
 "Message", "MSG"]
 }, Open  ]]
 }, Open  ]]

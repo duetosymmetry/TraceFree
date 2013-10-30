@@ -1,7 +1,7 @@
-DivFree
+TraceFree
 =======
 
-DivFree is a simple xTension package for xAct.
+TraceFree is a simple xTension package for xAct.
 It is forked from [HelloWorldxTension](https://github.com/xAct-contrib/HelloWorldxTension) as an example
 of what needs to be changed to create a new package.
 This package serves as an example for the framework
@@ -16,11 +16,11 @@ The directory tree should look like this:
 ```
 xAct
 |-- ...
-|-- DivFree
+|-- TraceFree
 |   |-- Kernel
 |   |   +-- init.m
-|   |-- DivFree.m
-|   |-- DivFree.nb
+|   |-- TraceFree.m
+|   |-- TraceFree.nb
 |   +-- README.md  (this file)
 |-- xTensor
 |-- ... (other xAct packages)

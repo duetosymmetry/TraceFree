@@ -19,11 +19,11 @@
 
 
 
-xAct`DivFree`$xTensorVersionExpected={"1.0.5",{2013,1,27}};
-xAct`DivFree`$Version={"0.1.0",{2013,08,29}}
+xAct`TraceFree`$xTensorVersionExpected={"1.0.5",{2013,1,27}};
+xAct`TraceFree`$Version={"0.1.0",{2013,10,30}}
 
 
-(* DivFree: Make tensors divergence free at definition time *)
+(* TraceFree: Make tensors trace-free at definition time *)
 
 (* Copyright (C) 2013 Leo C. Stein *)
 
@@ -35,15 +35,15 @@ You should have received a copy of the GNU General Public License along with thi
 *)
 
 
-(* :Title: DivFree *)
+(* :Title: TraceFree *)
 
 (* :Author: Leo C. Stein *)
 
-(* :Summary: Make tensors divergence free at definition time. *)
+(* :Summary: Make tensors trace-free at definition time. *)
 
-(* :Brief Discussion: DivFree is a package to demonstrate using xTension. It adds an option, DivFree, to DefTensor to declare a tensor divergence-free at the time of definition. *)
+(* :Brief Discussion: TraceFree is a package to demonstrate using xTension. It adds an option, TraceFree, to DefTensor to declare a tensor trace-free at the time of definition. *)
   
-(* :Context: xAct`DivFree` *)
+(* :Context: xAct`TraceFree` *)
 
 (* :Package Version: 0.1.0 *)
 
@@ -53,7 +53,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 (* :Keywords: TODO *)
 
-(* :Source: DivFree.nb *)
+(* :Source: TraceFree.nb *)
 
 (* :Warning: TODO *)
 
@@ -64,17 +64,17 @@ You should have received a copy of the GNU General Public License along with thi
 (* :Acknowledgements: *)
 
 
-If[Unevaluated[xAct`xCore`Private`$LastPackage]===xAct`xCore`Private`$LastPackage,xAct`xCore`Private`$LastPackage="xAct`DivFree`"];
+If[Unevaluated[xAct`xCore`Private`$LastPackage]===xAct`xCore`Private`$LastPackage,xAct`xCore`Private`$LastPackage="xAct`TraceFree`"];
 
 
-BeginPackage["xAct`DivFree`",{"xAct`xTensor`","xAct`xPerm`","xAct`xCore`"}]
+BeginPackage["xAct`TraceFree`",{"xAct`xTensor`","xAct`xPerm`","xAct`xCore`"}]
 
 
 If[Not@OrderedQ@Map[Last,{$xTensorVersionExpected,xAct`xTensor`$Version}],Throw@Message[General::versions,"xTensor",xAct`xTensor`$Version,$xTensorVersionExpected]]
 
 
 Print[xAct`xCore`Private`bars]
-Print["Package xAct`DivFree`  version ",$Version[[1]],", ",$Version[[2]]];
+Print["Package xAct`TraceFree`  version ",$Version[[1]],", ",$Version[[2]]];
 Print["Copyright (C) 2013, Leo C. Stein, under the General Public License."];
 
 
@@ -83,63 +83,52 @@ xAct`xForm`Disclaimer[]:=Print["These are points 11 and 12 of the General Public
 On[General::shdw]
 
 
-If[xAct`xCore`Private`$LastPackage==="xAct`DivFree`",
+If[xAct`xCore`Private`$LastPackage==="xAct`TraceFree`",
 Unset[xAct`xCore`Private`$LastPackage];
 Print[xAct`xCore`Private`bars];
 Print["These packages come with ABSOLUTELY NO WARRANTY; for details type Disclaimer[]. This is free software, and you are welcome to redistribute it under certain conditions. See the General Public License for details."];
 Print[xAct`xCore`Private`bars]]
 
 
-DivFree::usage="DivFree is an option for DefTensor to declare a tensor divergence free. Use DivFree->{covd[-a],...} to declare that the tensor is divergence free on index +a with respect to the covariant derivative covd.";
+TraceFree::usage="TraceFree is an option for DefTensor to declare a tensor trace-free. Use TraceFree:>{metricg[-a,-b],...} to declare that the contraction using metricg on indices (+a,+b) vanishes. Use delta[-a,+b] for a trace without metric.";
 
 
 Begin["`Private`"]
 
 
-(****************************** 2. Main code for DivFree *****************************)
+(****************************** 2. Main code for TraceFree *****************************)
 
 
-If[FreeQ[First/@Options[DefTensor],DivFree],
+If[FreeQ[First/@Options[DefTensor],TraceFree],
 Unprotect[DefTensor];
-Options[DefTensor]=Append[Options[DefTensor],DivFree->{}];
+Options[DefTensor]=Append[Options[DefTensor],TraceFree:>{}];
 Protect[DefTensor];];
 
 
-DefTensor::BadDivFreeIndices="Indices supplied to DivFree (`1`) do not all appear with opposite character in indices of tensor (`2`).";
+DefTensor::BadTraceFreeXXX="XXX";
 
 
-CheckDivFree[tensor_[inds___],df:{_?CovDQ[_]...}]:=Module[{dfinds=Union[First/@df]},
-With[{changedfinds=ChangeIndex/@dfinds},
-(* Every index in changedfinds must be in inds *)
-If[Intersection[{inds},changedfinds]=!=changedfinds,
-Throw@Message[DefTensor::BadDivFreeIndices,dfinds,{inds}];
+CheckTraceFree[tensor_[inds___],tf:{XXX}]:=Module[{XXX},
+XXX
 ];
-];
-];
-CheckDivFree[_,df_]:=Throw@Message[DefTensor::invalid,df,"format for DivFree"];
+CheckTraceFree[_,tf_]:=Throw@Message[DefTensor::invalid,tf,"format for TraceFree"];
 
 
 (* Check the input *)
-DefTensorBeginning[head_[indices___],dependencies_,sym_,options___]:=Module[{df=OptionValue[DefTensor,{options},DivFree]},
-CheckDivFree[head[indices],df];
+DefTensorBeginning[head_[indices___],dependencies_,sym_,options___]:=Module[{tf=OptionValue[DefTensor,{options},TraceFree]},
+CheckTraceFree[head[indices],tf];
 ];
 (* Here we do the actual work *)
-DefTensorEnd[head_[indices___],dependencies_,sym_,options___]:=Module[{df=OptionValue[DefTensor,{options},DivFree]},
-With[{rules=Flatten[MakeRule[{Evaluate[#[head[indices]]],0}]&/@df]},
-If[$DefInfoQ&&Length[rules]>0,
-Print["Generated rules:"];
-Print[rules];
-];
-AutomaticRules[head,rules];
-];
+DefTensorEnd[head_[indices___],dependencies_,sym_,options___]:=Module[{tf=OptionValue[DefTensor,{options},TraceFree]},
+XXX;
 ];
 
 
-xTension["DivFree`",DefTensor,"Beginning"]=DefTensorBeginning;
-xTension["DivFree`",DefTensor,"End"]=DefTensorEnd;
+xTension["TraceFree`",DefTensor,"Beginning"]=DefTensorBeginning;
+xTension["TraceFree`",DefTensor,"End"]=DefTensorEnd;
 
 
-Protect[DivFree];
+Protect[TraceFree];
 
 
 End[];
