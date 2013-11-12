@@ -42,8 +42,8 @@ Cell[BoxData[
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
-  "2013", ",", "10", ",", "30", ",", "11", ",", "56", ",", 
-   "0.696819`6.595694973126635"}], "}"}]], "Output"]
+  "2013", ",", "11", ",", "12", ",", "14", ",", "59", ",", 
+   "45.91704`8.414548860781643"}], "}"}]], "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -60,7 +60,7 @@ Cell[BoxData[{
   RowBox[{"{", 
    RowBox[{"\"\<0.1.0\>\"", ",", 
     RowBox[{"{", 
-     RowBox[{"2013", ",", "10", ",", "30"}], "}"}]}], "}"}]}]}], "Input",
+     RowBox[{"2013", ",", "11", ",", "12"}], "}"}]}], "}"}]}]}], "Input",
  InitializationCell->True],
 
 Cell[BoxData[
@@ -245,45 +245,6 @@ Cell[BoxData[
      "\"\<xAct`xCore`\>\""}], "}"}]}], "]"}]], "Input",
  InitializationCell->True],
 
-Cell[CellGroupData[{
-
-Cell[BoxData["\<\"------------------------------------------------------------\
-\"\>"], "Print"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Package xAct`xPerm`  version \"\>", 
-   "\[InvisibleSpace]", "\<\"1.2.1\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
-   "\[InvisibleSpace]", 
-   RowBox[{"{", 
-    RowBox[{"2013", ",", "7", ",", "1"}], "}"}]}],
-  SequenceForm["Package xAct`xPerm`  version ", "1.2.1", ", ", {2013, 7, 1}],
-  Editable->False]], "Print"],
-
-Cell[BoxData["\<\"CopyRight (C) 2003-2013, Jose M. Martin-Garcia, under the \
-General Public License.\"\>"], "Print"],
-
-Cell[BoxData["\<\"Connecting to external mac executable...\"\>"], "Print"],
-
-Cell[BoxData["\<\"Connection established.\"\>"], "Print"],
-
-Cell[BoxData["\<\"------------------------------------------------------------\
-\"\>"], "Print"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Package xAct`xTensor`  version \"\>", 
-   "\[InvisibleSpace]", "\<\"1.1.0\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
-   "\[InvisibleSpace]", 
-   RowBox[{"{", 
-    RowBox[{"2013", ",", "9", ",", "1"}], "}"}]}],
-  SequenceForm["Package xAct`xTensor`  version ", "1.1.0", ", ", {2013, 9, 1}],
-  Editable->False]], "Print"],
-
-Cell[BoxData["\<\"CopyRight (C) 2002-2013, Jose M. Martin-Garcia, under the \
-General Public License.\"\>"], "Print"]
-}, Open  ]],
-
 Cell[BoxData["\<\"xAct`TraceFree`\"\>"], "Output"]
 }, Open  ]],
 
@@ -456,7 +417,7 @@ Cell[BoxData["$xpermQ"], "Input"],
 
 Cell[BoxData["True"], "Output"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -487,11 +448,38 @@ Cell[BoxData[
   RowBox[{
    RowBox[{"TraceFree", "::", "usage"}], "=", 
    "\"\<TraceFree is an option for DefTensor to declare a tensor trace-free. \
-Use TraceFree:>{metricg[-a,-b],...} to declare that the contraction using \
-metricg on indices (+a,+b) vanishes. Use delta[-a,+b] for a trace without \
-metric.\>\""}], ";"}]], "Input",
+Use TraceFree->{{{a,b},metricg},...} to declare that the contraction using \
+metricg on indices (-a,-b) vanishes. Use delta for a trace without metric. \
+See TraceFreeRules for usage details.\>\""}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"TraceFreeRules", "::", "usage"}], "=", 
+   "\"\<TraceFreeRules[tensor[inds],{a,b},met] returns a list of rules which \
+make tensor[inds] tracefree on indices {a,b} using metric met for \
+contraction. a,b must both appear in inds and be from the same VBundle. met \
+can either be a metric, inverse metric, or delta. Other input forms:\n\
+TraceFreeRules[tensor[inds],{{{a1,b1},met1},{{a2,b2},met2},...}] returns the \
+Union of all rules from each metric-and-index-pair.\n\
+TraceFreeRules[tensor[inds],{a,b,...},met] makes tensor tracefree on every \
+pair of indices from {a,b,...}.\n\
+TraceFreeRules[tensor[inds],{a,b},{met1,met2,...}] uses every metric in the \
+list on the set of indices {a,b}. Can be combined with above.\n\
+TraceFreeRules[tensor[inds],{a,...}] uses the First metric from the VBundle \
+of {a,...}.\>\""}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"SetTraceFreeRules", "::", "usage"}], "=", 
+   "\"\<SetTraceFreeRules[tensor[inds],arguments...] uses AutomaticRules to \
+make the rules from TraceFreeRules[tensor[inds],arguments] automatic. See \
+TraceFreeRules.\>\""}], ";"}]], "Input",
  InitializationCell->True]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -515,7 +503,8 @@ Cell[BoxData[
 
 Cell[BoxData[
  RowBox[{"{", 
-  RowBox[{"\<\"TraceFree\"\>", ",", "\<\"$Version\"\>", 
+  RowBox[{"\<\"SetTraceFreeRules\"\>", ",", "\<\"TraceFree\"\>", 
+   ",", "\<\"TraceFreeRules\"\>", ",", "\<\"$Version\"\>", 
    ",", "\<\"$xTensorVersionExpected\"\>"}], "}"}]], "Output"]
 }, Open  ]],
 
@@ -524,7 +513,7 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"%", "//", "Length"}]], "Input"],
 
-Cell[BoxData["3"], "Output"]
+Cell[BoxData["5"], "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -601,7 +590,599 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
-Cell["2.1 Modify the Options list for DefTensor", "Subsubsection"],
+Cell["2.0 Description of approach", "Subsubsection"],
+
+Cell["\<\
+Here I describe the approach of TraceFree. Given:
+1. A tensor with natural index positions T[-a,-b,c,D,E,LI[f]] with {a,b,c} in \
+TangentM, {D,E} in VB, and LI[f] is a LabelIndex. (NOTE: We actually don\
+\[CloseCurlyQuote]t check natural index positions\[LongDash]MakeRule does \
+this and complains if there is no metric, and there is no harm if there is a \
+metric).
+2. A list of traces to take. This is just a list of pairs {{a,b}, met} where \
+met is either a metric, inverse metric, and/or delta to use for \
+\[OpenCurlyDoubleQuote]tracing\[CloseCurlyDoubleQuote]
+   Examples: {{-a,-b},met} means that T[-a,-b,c,D,E,LI[f]] met[a,b] :> 0
+   
+Everything can be done taking one contraction at a time, so let us focus on \
+an individual contraction. The considerations for an individual contraction \
+are as follows:
+1. The two indices must be compatible: A metric is only on one VBundle at a \
+time, not between VBundles (unless we have a soldering form, but let\
+\[CloseCurlyQuote]s ignore this).
+2. If there is no metric on a VBundle (MetricEndowedQ[VBundle] is False), \
+then the only contractions we allow are with delta. MakeRule will complain if \
+indices are moved without a metric.
+3. If there is a first metric, then indices are allowed to move. A moved \
+index implies a contraction with the first metric, the usual convention in \
+xTensor. Then we should generate rules for both with and without an explicit \
+metric, i.e.
+  i) T[-a,-b,c,D,E,LI[f]] met[a,b]
+  ii) T[-a,a,c,D,E,LI[f]]
+ and symmetry-related expressions. That is also handled by MakeRule.\
+\>", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2.1 Convenience functions", "Subsubsection"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"FirstMetricQ", "[", 
+    RowBox[{"met_", "?", "MetricQ"}], "]"}], ":=", 
+   RowBox[{"met", "===", 
+    RowBox[{"First", "@", 
+     RowBox[{"MetricsOfVBundle", "@", 
+      RowBox[{"VBundleOfMetric", "@", "met"}]}]}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"InverseMetricQ", "[", 
+    RowBox[{"x_", "?", "xTensorQ"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Length", "@", 
+      RowBox[{"TensorID", "[", "x", "]"}]}], ">", "0"}], "&&", 
+    RowBox[{
+     RowBox[{"First", "@", 
+      RowBox[{"TensorID", "[", "x", "]"}]}], "===", 
+     "xAct`xTensor`Private`InvMetric"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"InverseMetricQ", "[", "delta", "]"}], ":=", "False"}], ";"}], 
+  " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "This", " ", "is", " ", "a", " ", "bug", " ", "in", " ", "xTensor", " ", 
+    "1.0", ".5", " ", "and", " ", 
+    RowBox[{"earlier", ":", " ", 
+     RowBox[{
+      RowBox[{"TensorID", "@", "delta"}], " ", "Throws", " ", "a", " ", 
+      "Message"}]}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"InverseMetricQ", "[", "_", "]"}], ":=", "False"}], 
+  ";"}]}], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Inv", "[", 
+    RowBox[{"imet_", "?", "InverseMetricQ"}], "]"}], ":=", 
+   RowBox[{"MasterOf", "@", "imet"}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"IndexPos", "[", 
+   RowBox[{"list_List", ",", "ind_"}], "]"}], ":=", 
+  RowBox[{"Position", "[", 
+   RowBox[{"list", ",", "ind", ",", 
+    RowBox[{"{", "1", "}"}], ",", 
+    RowBox[{"Heads", "\[Rule]", "False"}]}], "]"}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ALIndexQ", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"AIndexQ", "[", "x", "]"}], "||", 
+   RowBox[{"LIndexQ", "[", "x", "]"}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"NoDummiesQ", "[", 
+   RowBox[{"tensor_", "[", 
+    RowBox[{"inds___", "?", "ALIndexQ"}], "]"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"IndicesOf", "[", "Dummy", "]"}], "[", 
+    RowBox[{"tensor", "[", "inds", "]"}], "]"}], "===", 
+   RowBox[{"IndexList", "[", "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NoDummiesQ", "[", "_", "]"}], ":=", "False"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"HasDummiesQ", "[", "x_", "]"}], ":=", 
+  RowBox[{"!", 
+   RowBox[{"NoDummiesQ", "[", "x", "]"}]}]}]}], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"MakeLIPatternRule", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"LI", "[", "x_", "]"}], "\[RuleDelayed]", 
+     RowBox[{"LI", "[", "_", "]"}]}], "}"}]}], ";"}]], "Input",
+ InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2.2 Checks for TraceFreeRules", "Subsubsection"],
+
+Cell["Error messages", "Text"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"TraceFree", "::", "dummies"}], "=", 
+   "\"\<Tensor must be given with no dummies (no internal \
+contractions).\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"TraceFree", "::", "sameVBinds"}], "=", 
+   "\"\<Indices `1` and `2` are not on the same VBundle.\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"TraceFree", "::", "deltaCharacter"}], "=", 
+   "\"\<When using delta, exactly one index must be up and one index \
+down.\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"TraceFree", "::", "sameVBmet"}], "=", 
+   "\"\<Indices `1` and `2` are not from the VBundle of metric `3`.\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"TraceFree", "::", "doesntappear"}], "=", 
+   "\"\<Index `1` does not appear in `2`.\>\""}], ";"}]}], "Input",
+ InitializationCell->True],
+
+Cell["\<\
+We only get to CheckMetInds once all the other tests pass. For the delta case \
+when !MetricEndowedQ, we would in principle want to check that the indices in \
+tensor have their \[OpenCurlyQuote]natural\[CloseCurlyQuote] characters. \
+However, this is already checked for us in MakeRule, so our job is easy.\
+\>", "Text"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"CheckMetInds", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"a_", "?", "AIndexQ"}], ",", 
+        RowBox[{"b_", "?", "AIndexQ"}]}], "}"}], ",", 
+      RowBox[{"met_", "?", "MetricQ"}]}], "]"}], ":=", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"VBundleOfIndex", "[", "a", "]"}], "\[NotEqual]", 
+       RowBox[{"VBundleOfMetric", "[", "met", "]"}]}], ",", 
+      RowBox[{"Throw", "@", 
+       RowBox[{"Message", "[", 
+        RowBox[{
+         RowBox[{"TraceFree", "::", "sameVBmet"}], ",", "a", ",", "b", ",", 
+         "met"}], "]"}]}]}], "]"}]}], ";"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"CheckMetInds", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"a_", "?", "AIndexQ"}], ",", 
+       RowBox[{"b_", "?", "AIndexQ"}]}], "}"}], ",", 
+     RowBox[{"met_", "?", "InverseMetricQ"}]}], "]"}], ":=", 
+   RowBox[{"CheckMetInds", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "b"}], "}"}], ",", 
+     RowBox[{"Inv", "@", "met"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"CheckMetInds", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"a_", "?", "AIndexQ"}], ",", 
+       RowBox[{"b_", "?", "AIndexQ"}]}], "}"}], ",", "delta"}], "]"}], ":=", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"DownIndexQ", "[", "a", "]"}], "&&", 
+        RowBox[{"DownIndexQ", "[", "b", "]"}]}], ")"}], "||", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"UpIndexQ", "[", "a", "]"}], "&&", 
+        RowBox[{"UpIndexQ", "[", "b", "]"}]}], ")"}]}], ",", 
+     RowBox[{"Throw", "@", 
+      RowBox[{"Message", "[", 
+       RowBox[{"TraceFree", "::", "deltaCharacter"}], "]"}]}]}], "]"}]}], 
+  ";"}]}], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"CheckTraceFreeRules", "[", 
+    RowBox[{
+     RowBox[{"tensor_", "[", 
+      RowBox[{"inds___", "?", "ALIndexQ"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"a_", "?", "AIndexQ"}], ",", 
+       RowBox[{"b_", "?", "AIndexQ"}]}], "}"}], ",", 
+     RowBox[{"met", ":", 
+      RowBox[{
+       RowBox[{"_", "?", "MetricQ"}], "|", 
+       RowBox[{"_", "?", "InverseMetricQ"}], "|", "delta"}]}]}], "]"}], ":=", 
+   
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"HasDummiesQ", "[", 
+         RowBox[{"tensor", "[", "inds", "]"}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Throw", "@", 
+         RowBox[{"Message", "[", 
+          RowBox[{"TraceFree", "::", "dummies"}], "]"}]}]}], "]"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"VBundleOfIndex", "[", "a", "]"}], "\[NotEqual]", 
+         RowBox[{"VBundleOfIndex", "[", "b", "]"}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Throw", "@", 
+         RowBox[{"Message", "[", 
+          RowBox[{
+           RowBox[{"TraceFree", "::", "sameVBinds"}], ",", "a", ",", "b"}], 
+          "]"}]}]}], "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "@", 
+          RowBox[{"IndexPos", "[", 
+           RowBox[{
+            RowBox[{"{", "inds", "}"}], ",", "a"}], "]"}]}], "\[Equal]", 
+         "0"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"Throw", "@", 
+         RowBox[{"Message", "[", 
+          RowBox[{
+           RowBox[{"TraceFree", "::", "doesntappear"}], ",", "a", ",", 
+           RowBox[{"tensor", "[", "inds", "]"}]}], "]"}]}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "@", 
+          RowBox[{"IndexPos", "[", 
+           RowBox[{
+            RowBox[{"{", "inds", "}"}], ",", "b"}], "]"}]}], "\[Equal]", 
+         "0"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"Throw", "@", 
+         RowBox[{"Message", "[", 
+          RowBox[{
+           RowBox[{"TraceFree", "::", "doesntappear"}], ",", "b", ",", 
+           RowBox[{"tensor", "[", "inds", "]"}]}], "]"}]}]}], "]"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"CheckMetInds", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"a", ",", "b"}], "}"}], ",", "met"}], "]"}], ";"}]}], 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2.3 TraceFreeRules and SetTraceFreeRules", "Subsubsection"],
+
+Cell["\<\
+TODO: Are there duplicate rules?
+TODO: Should we get rid of HoldForm? I doubt it...
+TODO: Allow AnyIndices.\
+\>", "Text"],
+
+Cell["General interfaces.", "Text"],
+
+Cell["A. Two-argument forms", "Text"],
+
+Cell["\<\
+1. Super convenience function when there is just a list of indices ... but \
+maybe it\[CloseCurlyQuote]s unsafe?\
+\>", "Text"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"TraceFreeRules", "[", 
+    RowBox[{"tens_", ",", 
+     RowBox[{"{", 
+      RowBox[{"inds__", "?", "AIndexQ"}], "}"}]}], "]"}], "/;", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Length", "[", 
+       RowBox[{"{", "inds", "}"}], "]"}], "\[GreaterEqual]", "2"}], ")"}], "&&", 
+    RowBox[{"(", 
+     RowBox[{"1", "\[Equal]", 
+      RowBox[{"Length", "@", 
+       RowBox[{"Union", "[", 
+        RowBox[{"VBundleOfIndex", "/@", 
+         RowBox[{"{", "inds", "}"}]}], "]"}]}]}], ")"}]}]}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"metrics", "=", 
+      RowBox[{"MetricsOfVBundle", "@", 
+       RowBox[{"VBundleOfIndex", "@", 
+        RowBox[{"First", "@", 
+         RowBox[{"{", "inds", "}"}]}]}]}]}], "}"}], ",", 
+    RowBox[{
+     RowBox[{"TraceFreeRules", "[", 
+      RowBox[{"tens", ",", 
+       RowBox[{"{", "inds", "}"}], ",", 
+       RowBox[{"First", "@", "metrics"}]}], "]"}], "/;", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"Length", "@", "metrics"}], "\[GreaterEqual]", "1"}], 
+      ")"}]}]}], "]"}]}]], "Input",
+ InitializationCell->True],
+
+Cell["2. Convert to turn into three-argument form", "Text"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"TraceFreeRules", "[", 
+    RowBox[{"tens_", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"inds__", "?", "AIndexQ"}], "}"}], ",", "met_"}], "}"}]}], 
+    "]"}], ":=", 
+   RowBox[{"TraceFreeRules", "[", 
+    RowBox[{"tens", ",", 
+     RowBox[{"{", "inds", "}"}], ",", "met"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"TraceFreeRules", "[", 
+    RowBox[{"tens_", ",", 
+     RowBox[{"arguments", ":", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"_", ",", "_"}], "}"}], ".."}], "}"}]}]}], "]"}], ":=", 
+   RowBox[{"Union", "@@", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"TraceFreeRules", "[", 
+        RowBox[{"tens", ",", "#"}], "]"}], "&"}], "/@", "arguments"}], 
+     ")"}]}]}], ";"}]}], "Input",
+ InitializationCell->True],
+
+Cell["B. Three-argument forms", "Text"],
+
+Cell["3. Thread over multiple metrics", "Text"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"TraceFreeRules", "[", 
+   RowBox[{"tens_", ",", "slots_", ",", "metrics_List"}], "]"}], ":=", 
+  RowBox[{"Union", "@@", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"TraceFreeRules", "[", 
+       RowBox[{"tens", ",", "slots", ",", "#"}], "]"}], "&"}], "/@", 
+     "metrics"}], ")"}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell["4. Thread over groups of associated slots", "Text"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"TraceFreeRules", "[", 
+   RowBox[{"tens_", ",", 
+    RowBox[{"slots_List", "?", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Length", "[", "#", "]"}], ">", "2"}], "&"}], ")"}]}], ",", 
+    "met_"}], "]"}], ":=", 
+  RowBox[{"Union", "@@", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"TraceFreeRules", "[", 
+       RowBox[{"tens", ",", "#", ",", "met"}], "]"}], "&"}], "/@", 
+     RowBox[{"Subsets", "[", 
+      RowBox[{"slots", ",", 
+       RowBox[{"{", "2", "}"}]}], "]"}]}], ")"}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell["Main code", "Text"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"TraceFreeRules", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"tensor_", "?", "xTensorQ"}], "[", 
+      RowBox[{"inds___", "?", "ALIndexQ"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"a_", "?", "AIndexQ"}], ",", 
+       RowBox[{"b_", "?", "AIndexQ"}]}], "}"}], ",", 
+     RowBox[{"met", ":", 
+      RowBox[{
+       RowBox[{"_", "?", "MetricQ"}], "|", 
+       RowBox[{"_", "?", "InverseMetricQ"}], "|", "delta"}]}]}], "]"}], ":=", 
+   "\[IndentingNewLine]", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"tensWithLIPats", "=", 
+       RowBox[{
+        RowBox[{"tensor", "[", "inds", "]"}], "/.", "MakeLIPatternRule"}]}], 
+      "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", "Checks", " ", "*)"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"CheckTraceFreeRules", "[", 
+       RowBox[{
+        RowBox[{"tensor", "[", "inds", "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"a", ",", "b"}], "}"}], ",", "met"}], "]"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{
+        "Except", " ", "in", " ", "the", " ", "case", " ", "of", " ", 
+         "delta"}], ",", " ", 
+        RowBox[{
+        "we", " ", "need", " ", "rules", " ", "with", " ", "met", " ", 
+         "appearing", " ", 
+         RowBox[{"explicitly", "."}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+      
+      RowBox[{"With", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"metExplicitRules", "=", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"met", "===", "delta"}], ",", 
+            RowBox[{"{", "}"}], ",", 
+            RowBox[{"MakeRule", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"tensWithLIPats", " ", 
+                 RowBox[{"met", "[", 
+                  RowBox[{
+                   RowBox[{"ChangeIndex", "@", "a"}], ",", 
+                   RowBox[{"ChangeIndex", "@", "b"}]}], "]"}]}], ",", "0"}], 
+               "}"}], ",", 
+              RowBox[{"PatternIndices", "\[Rule]", "All"}], ",", 
+              RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+              RowBox[{"Evaluate", "\[Rule]", "False"}], ",", 
+              RowBox[{"UseSymmetries", "\[Rule]", "True"}]}], "]"}]}], 
+           "]"}]}], "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        
+        RowBox[{"(*", " ", 
+         RowBox[{
+          RowBox[{
+          "If", " ", "we", " ", "have", " ", "a", " ", "metric", " ", "or", 
+           " ", "not"}], ",", " ", 
+          RowBox[{"generate", " ", "rules", " ", "without", " ", "met", " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{
+             "whether", " ", "met", " ", "is", " ", "delta", " ", "or", " ", 
+              "not"}], ",", " ", 
+             RowBox[{
+             "this", " ", "is", " ", "handled", " ", "the", " ", "same", " ", 
+              "with", " ", "ContractMetric"}]}], " "}]}]}], "*)"}], 
+        "\[IndentingNewLine]", 
+        RowBox[{"With", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"contractedRules", "=", 
+            RowBox[{"MakeRule", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Evaluate", "@", 
+                 RowBox[{"ContractMetric", "[", 
+                  RowBox[{"tensWithLIPats", " ", 
+                   RowBox[{"met", "[", 
+                    RowBox[{
+                    RowBox[{"ChangeIndex", "@", "a"}], ",", 
+                    RowBox[{"ChangeIndex", "@", "b"}]}], "]"}]}], "]"}]}], 
+                ",", "0"}], "}"}], ",", 
+              RowBox[{"PatternIndices", "\[Rule]", "All"}], ",", 
+              RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+              RowBox[{"Evaluate", "\[Rule]", "False"}], ",", 
+              RowBox[{"UseSymmetries", "\[Rule]", "True"}]}], "]"}]}], "}"}], 
+          ",", "\[IndentingNewLine]", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+           "We", " ", "can", " ", "also", " ", "slightly", " ", "simplify", 
+            " ", "the", " ", "rules", " ", "because", " ", "we", " ", "know", 
+            " ", "their", " ", "structure"}], " ", "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+           "This", " ", "is", " ", "the", " ", "final", " ", "result"}], " ", 
+           "*)"}], "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Join", "[", 
+             RowBox[{"metExplicitRules", ",", "contractedRules"}], "]"}], "/.", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"x_", "\[RuleDelayed]", "_"}], ")"}], "\[RuleDelayed]", 
+             
+             RowBox[{"(", 
+              RowBox[{"x", "\[RuleDelayed]", "0"}], ")"}]}]}], "//", 
+           "Union"}]}], "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]",
+        "]"}]}]}], "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell["\<\
+SetTraceFreeRules is a trivial function that just calls AutomaticaRules.\
+\>", "Text"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SetTraceFreeRules", "[", 
+   RowBox[{"tens_", ",", "rest__"}], "]"}], ":=", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"subhead", "=", 
+      RowBox[{"SubHead", "@", "tens"}]}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"AutomaticRules", "[", 
+     RowBox[{"subhead", ",", 
+      RowBox[{"TraceFreeRules", "[", 
+       RowBox[{"tens", ",", "rest"}], "]"}]}], "]"}]}], "]"}]}]], "Input",
+ InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2.4 Modify the Options list for DefTensor", "Subsubsection"],
 
 Cell["\<\
 Add TraceFree to the list of Options, if it\[CloseCurlyQuote]s not already \
@@ -624,7 +1205,7 @@ Cell[BoxData[
       RowBox[{"Append", "[", 
        RowBox[{
         RowBox[{"Options", "[", "DefTensor", "]"}], ",", 
-        RowBox[{"TraceFree", "\[RuleDelayed]", 
+        RowBox[{"TraceFree", "\[Rule]", 
          RowBox[{"{", "}"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
      RowBox[{"Protect", "[", "DefTensor", "]"}], ";"}]}], "]"}], 
   ";"}]], "Input",
@@ -633,42 +1214,168 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
-Cell["2.2 Checking input", "Subsubsection"],
+Cell["2.5 Checking input for TraceFree (the Option for DefTensor)", \
+"Subsubsection"],
+
+Cell["\<\
+We do this separately from the CheckTraceFreeRules ... maybe this is silly?\
+\>", "Text"],
 
 Cell[BoxData[
  RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Two", " ", "argument", " ", 
+    RowBox[{"forms", " ", "--"}], " ", "convert", " ", "to", " ", "three", 
+    " ", "argument", " ", "forms"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Using", " ", "First", " ", "metric"}], ",", " ", 
+    RowBox[{"if", " ", "there", " ", "is", " ", "one"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
   RowBox[{
-   RowBox[{"DefTensor", "::", "BadTraceFreeXXX"}], "=", "\"\<XXX\>\""}], 
-  ";"}]], "Input",
- InitializationCell->True],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"CheckTraceFree", "[", 
+   RowBox[{
     RowBox[{
-     RowBox[{"tensor_", "[", "inds___", "]"}], ",", 
-     RowBox[{"tf", ":", 
-      RowBox[{"{", "XXX", "}"}]}]}], "]"}], ":=", 
-   RowBox[{"Module", "[", 
-    RowBox[{
-     RowBox[{"{", "XXX", "}"}], ",", "\[IndentingNewLine]", "XXX"}], 
-    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"CheckTraceFree", "[", 
-    RowBox[{"_", ",", "tf_"}], "]"}], ":=", 
-   RowBox[{"Throw", "@", 
-    RowBox[{"Message", "[", 
      RowBox[{
-      RowBox[{"DefTensor", "::", "invalid"}], ",", "tf", ",", 
-      "\"\<format for TraceFree\>\""}], "]"}]}]}], ";"}]}], "Input",
+      RowBox[{"CheckTraceFree", "[", 
+       RowBox[{"tens_", ",", 
+        RowBox[{"{", 
+         RowBox[{"inds__", "?", "AIndexQ"}], "}"}]}], "]"}], "/;", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Length", "[", 
+          RowBox[{"{", "inds", "}"}], "]"}], "\[GreaterEqual]", "2"}], ")"}], 
+       "&&", 
+       RowBox[{"(", 
+        RowBox[{"1", "\[Equal]", 
+         RowBox[{"Length", "@", 
+          RowBox[{"Union", "[", 
+           RowBox[{"VBundleOfIndex", "/@", 
+            RowBox[{"{", "inds", "}"}]}], "]"}]}]}], ")"}]}]}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"metrics", "=", 
+         RowBox[{"MetricsOfVBundle", "@", 
+          RowBox[{"VBundleOfIndex", "@", 
+           RowBox[{"First", "@", 
+            RowBox[{"{", "inds", "}"}]}]}]}]}], "}"}], ",", 
+       RowBox[{
+        RowBox[{"CheckTraceFree", "[", 
+         RowBox[{"tens", ",", 
+          RowBox[{"{", "inds", "}"}], ",", 
+          RowBox[{"First", "@", "metrics"}]}], "]"}], "/;", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Length", "@", "metrics"}], "\[GreaterEqual]", "1"}], 
+         ")"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Convert", " ", "to", " ", "three", " ", "argument", " ", "form"}], " ", 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"CheckTraceFree", "[", 
+      RowBox[{"tens_", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"inds__", "?", "AIndexQ"}], "}"}], ",", "met_"}], "}"}]}], 
+      "]"}], ":=", 
+     RowBox[{"CheckTraceFree", "[", 
+      RowBox[{"tens", ",", 
+       RowBox[{"{", "inds", "}"}], ",", "met"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"CheckTraceFree", "[", 
+      RowBox[{"tens_", ",", 
+       RowBox[{"arguments", ":", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"_", ",", "_"}], "}"}], ".."}], "}"}]}]}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"CheckTraceFree", "[", 
+        RowBox[{"tens", ",", "#"}], "]"}], "&"}], "/@", "arguments"}]}], 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Three", " ", "argument", " ", "forms"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Thread", " ", "over", " ", "metrics"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"CheckTraceFree", "[", 
+      RowBox[{"tens_", ",", "slots_", ",", "metrics_List"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"CheckTraceFree", "[", 
+        RowBox[{"tens", ",", "slots", ",", "#"}], "]"}], "&"}], "/@", 
+      "metrics"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Thread", " ", "over", " ", "several", " ", "indices"}], " ", 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"CheckTraceFree", "[", 
+      RowBox[{"tens_", ",", 
+       RowBox[{"slots_", "?", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Length", "[", "#", "]"}], ">", "2"}], "&"}], ")"}]}], ",",
+        "metric_"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"CheckTraceFree", "[", 
+        RowBox[{"tens", ",", "#", ",", "metric"}], "]"}], "&"}], "/@", 
+      RowBox[{"Subsets", "[", 
+       RowBox[{"slots", ",", 
+        RowBox[{"{", "2", "}"}]}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"CheckTraceFree", "[", 
+      RowBox[{"tens_", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"a_", "?", "AIndexQ"}], ",", 
+         RowBox[{"b_", "?", "AIndexQ"}]}], "}"}], ",", 
+       RowBox[{"met", ":", 
+        RowBox[{
+         RowBox[{"_", "?", "MetricQ"}], "|", 
+         RowBox[{"_", "?", "InverseMetricQ"}], "|", "delta"}]}]}], "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Now", " ", "use", " ", "CheckTraceFreeRules", " ", "for", " ", "the",
+          " ", "logic"}], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"CheckTraceFreeRules", "[", 
+         RowBox[{"tens", ",", 
+          RowBox[{"{", 
+           RowBox[{"a", ",", "b"}], "}"}], ",", "met"}], "]"}], ";"}]}], 
+      "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"CheckTraceFree", "[", 
+      RowBox[{"tens_", ",", "rest__"}], "]"}], ":=", 
+     RowBox[{"Throw", "@", 
+      RowBox[{"Message", "[", 
+       RowBox[{
+        RowBox[{"TraceFree", "::", "invalid"}], ",", 
+        RowBox[{"{", "rest", "}"}], ",", "\"\<format for TraceFree\>\""}], 
+       "]"}]}]}], ";"}]}]}]], "Input",
  InitializationCell->True]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["2.3 The hooks (functions) themselves", "Subsubsection"],
+Cell["2.6 The hooks (functions) themselves", "Subsubsection"],
 
 Cell["\<\
 The functions will be called with the same arguments as DefTensor. This \
@@ -698,14 +1405,18 @@ Cell[BoxData[
            RowBox[{"{", "options", "}"}], ",", "TraceFree"}], "]"}]}], "}"}], 
        ",", "\[IndentingNewLine]", 
        RowBox[{
-        RowBox[{"CheckTraceFree", "[", 
+        RowBox[{"If", "[", 
          RowBox[{
-          RowBox[{"head", "[", "indices", "]"}], ",", "tf"}], "]"}], ";"}]}], 
-      "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+          RowBox[{"tf", "=!=", 
+           RowBox[{"{", "}"}]}], ",", 
+          RowBox[{"CheckTraceFree", "[", 
+           RowBox[{
+            RowBox[{"head", "[", "indices", "]"}], ",", "tf"}], "]"}]}], 
+         "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
-    RowBox[{
-    "Here", " ", "we", " ", "do", " ", "the", " ", "actual", " ", "work"}], 
-    " ", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"Call", " ", "SetTraceFreeRules"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{
      RowBox[{"DefTensorEnd", "[", 
@@ -720,14 +1431,21 @@ Cell[BoxData[
           RowBox[{"DefTensor", ",", 
            RowBox[{"{", "options", "}"}], ",", "TraceFree"}], "]"}]}], "}"}], 
        ",", "\[IndentingNewLine]", 
-       RowBox[{"XXX", ";"}]}], "\[IndentingNewLine]", "]"}]}], 
-    ";"}]}]}]], "Input",
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"tf", "=!=", 
+           RowBox[{"{", "}"}]}], ",", 
+          RowBox[{"SetTraceFreeRules", "[", 
+           RowBox[{
+            RowBox[{"head", "[", "indices", "]"}], ",", "tf"}], "]"}]}], 
+         "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}], ";"}]}]}]], "Input",
  InitializationCell->True]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["2.4 Registering our hooks", "Subsubsection"],
+Cell["2.7 Registering our hooks", "Subsubsection"],
 
 Cell["Here we let the xTension system know about our functions.", "Text"],
 
@@ -780,10 +1498,9 @@ Cell[BoxData[
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"Information", "::", "nomatch"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"No symbol matching \[NoBreak]\\!\\(\\\"Global`*\\\"\\)\
-\[NoBreak] found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+   RowBox[{"Information", "::", "nomatch"}], "MessageName"], ":", 
+  " ", "\<\"No symbol matching \[NoBreak]\\!\\(\\\"Global`*\\\"\\)\[NoBreak] \
+found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
 ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
 ButtonData:>\\\"paclet:ref/message/Information/nomatch\\\", ButtonNote -> \
 \\\"Information::nomatch\\\"]\\)\"\>"}]], "Message", "MSG"]
@@ -825,6 +1542,55 @@ Cell[BoxData[
 }, Open  ]]
 }, Open  ]],
 
+Cell["\<\
+Make a tracefree tensor without any metric. We must explicitly specify delta \
+(just indices can be used when there is a metric).\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DefTensor", "[", 
+  RowBox[{
+   RowBox[{"T", "[", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "b"}]}], "]"}], ",", "M4", ",", 
+   RowBox[{"TraceFree", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"a", ",", 
+        RowBox[{"-", "b"}]}], "}"}], ",", "delta"}], "}"}]}]}], 
+  "]"}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"tensor \"\>", "\[InvisibleSpace]", 
+   RowBox[{"T", "[", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "b"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm["** ", xAct`xTensor`DefTensor, ": Defining ", "tensor ", 
+   $CellContext`T[$CellContext`a, -$CellContext`b], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   Rules \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", "1", "}"}], 
+   "\[InvisibleSpace]", "\<\" have been declared as DownValues for \"\>", 
+   "\[InvisibleSpace]", "T", "\[InvisibleSpace]", "\<\".\"\>"}],
+  SequenceForm["   Rules ", 
+   Shallow[{1}], " have been declared as DownValues for ", $CellContext`T, 
+   "."],
+  Editable->False]], "Print"]
+}, Open  ]]
+}, Open  ]],
+
 Cell["Define a metric", "Text"],
 
 Cell[CellGroupData[{
@@ -838,6 +1604,8 @@ Cell[BoxData[
      RowBox[{"-", "a"}], ",", 
      RowBox[{"-", "b"}]}], "]"}], ",", "CD", ",", 
    RowBox[{"PrintAs", "\[Rule]", "\"\<g\>\""}]}], "]"}]], "Input"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  InterpretationBox[
@@ -854,15 +1622,6 @@ Cell[BoxData[
   "** ", xAct`xTensor`DefTensor, ": Defining ", "symmetric metric tensor ", 
    $CellContext`met[-$CellContext`a, -$CellContext`b], ". ", ""],
   Editable->False]], "Print"],
-
-Cell[BoxData[
- RowBox[{
-  StyleBox[
-   RowBox[{"DefTensor", "::", "invalid"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"\[NoBreak]\\!\\({}\\)\[NoBreak] is not a valid \
-\[NoBreak]\\!\\(\\\"format for TraceFree\\\"\\)\[NoBreak].\"\>"}]], \
-"Message", "MSG"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -884,15 +1643,6 @@ Cell[BoxData[
   Editable->False]], "Print"],
 
 Cell[BoxData[
- RowBox[{
-  StyleBox[
-   RowBox[{"DefTensor", "::", "invalid"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"\[NoBreak]\\!\\({}\\)\[NoBreak] is not a valid \
-\[NoBreak]\\!\\(\\\"format for TraceFree\\\"\\)\[NoBreak].\"\>"}]], \
-"Message", "MSG"],
-
-Cell[BoxData[
  InterpretationBox[
   RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
    "\[InvisibleSpace]", "\<\": Defining \"\>", 
@@ -910,75 +1660,698 @@ Cell[BoxData[
   Editable->False]], "Print"],
 
 Cell[BoxData[
- RowBox[{
-  StyleBox[
-   RowBox[{"DefTensor", "::", "invalid"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"\[NoBreak]\\!\\({}\\)\[NoBreak] is not a valid \
-\[NoBreak]\\!\\(\\\"format for TraceFree\\\"\\)\[NoBreak].\"\>"}]], \
-"Message", "MSG"],
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"tetrametric \"\>", "\[InvisibleSpace]", 
+   RowBox[{"Tetramet\[Dagger]", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}], ",", 
+     RowBox[{"-", "c"}], ",", 
+     RowBox[{"-", "d"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm["** ", xAct`xTensor`DefTensor, ": Defining ", "tetrametric ", 
+   $CellContext`Tetramet\[Dagger][-$CellContext`a, -$CellContext`b, \
+-$CellContext`c, -$CellContext`d], ". ", ""],
+  Editable->False]], "Print"],
 
 Cell[BoxData[
- RowBox[{
-  StyleBox[
-   RowBox[{"General", "::", "stop"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Further output of \[NoBreak]\\!\\(\\*StyleBox[\\(DefTensor \
-:: invalid\\), \\\"MessageName\\\"]\\)\[NoBreak] will be suppressed during \
-this calculation. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
-ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
-ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
-\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG"],
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefCovD", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"covariant derivative \"\>", "\[InvisibleSpace]", 
+   
+   RowBox[{"CD", "[", 
+    RowBox[{"-", "a"}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefCovD, ": Defining ", "covariant derivative ", 
+   $CellContext`CD[-$CellContext`a], ". ", ""],
+  Editable->False]], "Print"],
 
 Cell[BoxData[
- RowBox[{
-  StyleBox[
-   RowBox[{"Dagger", "::", "unknown"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Unknown \[NoBreak]\\!\\(\\\"conjugate of symbol\\\"\\)\
-\[NoBreak] \[NoBreak]\\!\\(Tetramet\\)\[NoBreak].\"\>"}]], "Message", "MSG"]
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"vanishing torsion tensor \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"TorsionCD", "[", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "b"}], ",", 
+     RowBox[{"-", "c"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "vanishing torsion tensor ", 
+   $CellContext`TorsionCD[$CellContext`a, -$CellContext`b, -$CellContext`c], 
+   ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"symmetric Christoffel tensor \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"ChristoffelCD", "[", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "b"}], ",", 
+     RowBox[{"-", "c"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", 
+   "symmetric Christoffel tensor ", 
+   $CellContext`ChristoffelCD[$CellContext`a, -$CellContext`b, \
+-$CellContext`c], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"Riemann tensor \"\>", "\[InvisibleSpace]", 
+   RowBox[{"RiemannCD", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}], ",", 
+     RowBox[{"-", "c"}], ",", 
+     RowBox[{"-", "d"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "Riemann tensor ", 
+   $CellContext`RiemannCD[-$CellContext`a, -$CellContext`b, -$CellContext`c, \
+-$CellContext`d], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"symmetric Ricci tensor \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"RicciCD", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "symmetric Ricci tensor ", 
+   $CellContext`RicciCD[-$CellContext`a, -$CellContext`b], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData["\<\"** DefCovD:  Contractions of Riemann automatically replaced \
+by Ricci.\"\>"], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"Ricci scalar \"\>", "\[InvisibleSpace]", 
+   RowBox[{"RicciScalarCD", "[", "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "Ricci scalar ", 
+   $CellContext`RicciScalarCD[], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData["\<\"** DefCovD:  Contractions of Ricci automatically replaced \
+by RicciScalar.\"\>"], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"symmetric Einstein tensor \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"EinsteinCD", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", 
+   "symmetric Einstein tensor ", 
+   $CellContext`EinsteinCD[-$CellContext`a, -$CellContext`b], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"Weyl tensor \"\>", "\[InvisibleSpace]", 
+   RowBox[{"WeylCD", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}], ",", 
+     RowBox[{"-", "c"}], ",", 
+     RowBox[{"-", "d"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm["** ", xAct`xTensor`DefTensor, ": Defining ", "Weyl tensor ", 
+   $CellContext`WeylCD[-$CellContext`a, -$CellContext`b, -$CellContext`c, \
+-$CellContext`d], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"symmetric TFRicci tensor \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"TFRicciCD", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "symmetric TFRicci tensor ", 
+   $CellContext`TFRicciCD[-$CellContext`a, -$CellContext`b], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"Kretschmann scalar \"\>", "\[InvisibleSpace]", 
+   RowBox[{"KretschmannCD", "[", "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "Kretschmann scalar ", 
+   $CellContext`KretschmannCD[], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** DefCovD:  Computing RiemannToWeylRules for dim \"\>", 
+   "\[InvisibleSpace]", "4"}],
+  SequenceForm["** DefCovD:  Computing RiemannToWeylRules for dim ", 4],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** DefCovD:  Computing RicciToTFRicci for dim \"\>", 
+   "\[InvisibleSpace]", "4"}],
+  SequenceForm["** DefCovD:  Computing RicciToTFRicci for dim ", 4],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** DefCovD:  Computing RicciToEinsteinRules for dim \"\>", 
+   "\[InvisibleSpace]", "4"}],
+  SequenceForm["** DefCovD:  Computing RicciToEinsteinRules for dim ", 4],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"weight +2 density \"\>", "\[InvisibleSpace]", 
+   RowBox[{"Detmet", "[", "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"Determinant.\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "weight +2 density ", 
+   $CellContext`Detmet[], ". ", "Determinant."],
+  Editable->False]], "Print"]
+}, Open  ]]
 }, Open  ]],
 
-Cell["Define a symmetric tensor which is trace-free with met.", "Text"],
+Cell["\<\
+Define another tensor which is symmetric and completely tracefree. Since we \
+have a metric we can just give a list of indices.\
+\>", "Text"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"DefTensor", "[", 
   RowBox[{
-   RowBox[{"T", "[", 
-    RowBox[{"a", ",", "b"}], "]"}], ",", "M4", ",", 
+   RowBox[{"S", "[", 
+    RowBox[{"a", ",", "b", ",", "c"}], "]"}], ",", "M4", ",", 
    RowBox[{"Symmetric", "[", 
     RowBox[{"{", 
-     RowBox[{"a", ",", "b"}], "}"}], "]"}], ",", 
-   RowBox[{"TraceFree", "\[RuleDelayed]", 
+     RowBox[{"a", ",", "b", ",", "c"}], "}"}], "]"}], ",", 
+   RowBox[{"TraceFree", "\[Rule]", 
     RowBox[{"{", 
-     RowBox[{"met", "[", 
-      RowBox[{
-       RowBox[{"-", "a"}], ",", 
-       RowBox[{"-", "b"}]}], "]"}], "}"}]}]}], "]"}]], "Input"],
+     RowBox[{"a", ",", "b", ",", "c"}], "}"}]}]}], "]"}]], "Input"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  InterpretationBox[
   RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
    "\[InvisibleSpace]", "\<\": Defining \"\>", 
    "\[InvisibleSpace]", "\<\"tensor \"\>", "\[InvisibleSpace]", 
-   RowBox[{"T", "[", 
-    RowBox[{"a", ",", "b"}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
-   "\[InvisibleSpace]", "\<\"\"\>"}],
+   RowBox[{"S", "[", 
+    RowBox[{"a", ",", "b", ",", "c"}], "]"}], 
+   "\[InvisibleSpace]", "\<\". \"\>", "\[InvisibleSpace]", "\<\"\"\>"}],
   SequenceForm["** ", xAct`xTensor`DefTensor, ": Defining ", "tensor ", 
-   $CellContext`T[$CellContext`a, $CellContext`b], ". ", ""],
+   $CellContext`S[$CellContext`a, $CellContext`b, $CellContext`c], ". ", ""],
   Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   Rules \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+    "73", ",", "74", ",", "75", ",", "76", ",", "77", ",", "78", ",", "79", 
+     ",", "80", ",", "81", ",", "82", ",", 
+     RowBox[{"\[LeftSkeleton]", "8", "\[RightSkeleton]"}]}], "}"}], 
+   "\[InvisibleSpace]", "\<\" have been declared as DownValues for \"\>", 
+   "\[InvisibleSpace]", "S", "\[InvisibleSpace]", "\<\".\"\>"}],
+  SequenceForm["   Rules ", 
+   Shallow[{73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 
+    89, 90}], " have been declared as DownValues for ", $CellContext`S, "."],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   Rules \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+    "1", ",", "2", ",", "3", ",", "4", ",", "5", ",", "6", ",", "7", ",", "8",
+      ",", "9", ",", "10", ",", 
+     RowBox[{"\[LeftSkeleton]", "62", "\[RightSkeleton]"}]}], "}"}], 
+   "\[InvisibleSpace]", "\<\" have been declared as UpValues for \"\>", 
+   "\[InvisibleSpace]", "S", "\[InvisibleSpace]", "\<\".\"\>"}],
+  SequenceForm["   Rules ", 
+   Shallow[{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+     20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 
+    38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 
+    56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72}], 
+   " have been declared as UpValues for ", $CellContext`S, "."],
+  Editable->False]], "Print"]
+}, Open  ]]
+}, Open  ]],
+
+Cell["\<\
+There are lots of definitions ... because they include those with the metric \
+appearing and those with an internal contraction:\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"met", "[", 
+   RowBox[{
+    RowBox[{"-", "a"}], ",", 
+    RowBox[{"-", "b"}]}], "]"}], 
+  RowBox[{"S", "[", 
+   RowBox[{"a", ",", "b", ",", "c"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"S", "[", 
+  RowBox[{"a", ",", "b", ",", 
+   RowBox[{"-", "a"}]}], "]"}]}], "Input"],
+
+Cell[BoxData["0"], "Output"],
+
+Cell[BoxData["0"], "Output"]
+}, Open  ]],
+
+Cell["Define another metric", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DefMetric", "[", 
+  RowBox[{
+   RowBox[{"-", "1"}], ",", 
+   RowBox[{"H", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}]}], "]"}], ",", "cdH"}], "]"}]], "Input"],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DefTensor", "::", "invalid"}], "MessageName"], 
+   RowBox[{"DefMetric", "::", "old"}], "MessageName"], ":", 
+  " ", "\<\"There are already metrics \[NoBreak]\\!\\({met}\\)\[NoBreak] in \
+vbundle \[NoBreak]\\!\\(\\*InterpretationBox[StyleBox[\\\"\
+\[DoubleStruckCapitalT]M4\\\", Rule[AutoSpacing, False], Rule[ShowAutoStyles, \
+False]], TangentM4, Rule[Editable, False]]\\)\[NoBreak].\"\>"}]], "Message", \
+"MSG"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"symmetric metric tensor \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"H", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "symmetric metric tensor ", 
+   $CellContext`H[-$CellContext`a, -$CellContext`b], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"inverse metric tensor \"\>", "\[InvisibleSpace]", 
+   RowBox[{"InvH", "[", 
+    RowBox[{"a", ",", "b"}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"Metric is frozen!\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "inverse metric tensor ", 
+   $CellContext`InvH[$CellContext`a, $CellContext`b], ". ", 
+   "Metric is frozen!"],
+  Editable->False]], "Print"],
+
+Cell[BoxData["\<\"** DefMetric: Don't know yet how to define epsilon for a \
+frozen metric.\"\>"], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefCovD", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"covariant derivative \"\>", "\[InvisibleSpace]", 
+   
+   RowBox[{"cdH", "[", 
+    RowBox[{"-", "a"}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefCovD, ": Defining ", "covariant derivative ", 
+   $CellContext`cdH[-$CellContext`a], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"vanishing torsion tensor \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"TorsioncdH", "[", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "b"}], ",", 
+     RowBox[{"-", "c"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "vanishing torsion tensor ", 
+   $CellContext`TorsioncdH[$CellContext`a, -$CellContext`b, -$CellContext`c], 
+   ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"symmetric Christoffel tensor \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"ChristoffelcdH", "[", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "b"}], ",", 
+     RowBox[{"-", "c"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", 
+   "symmetric Christoffel tensor ", 
+   $CellContext`ChristoffelcdH[$CellContext`a, -$CellContext`b, \
+-$CellContext`c], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"Riemann tensor \"\>", "\[InvisibleSpace]", 
+   RowBox[{"RiemannDowncdH", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}], ",", 
+     RowBox[{"-", "c"}], ",", 
+     RowBox[{"-", "d"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "Riemann tensor ", 
+   $CellContext`RiemannDowncdH[-$CellContext`a, -$CellContext`b, \
+-$CellContext`c, -$CellContext`d], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"Riemann tensor \"\>", "\[InvisibleSpace]", 
+   RowBox[{"RiemanncdH", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}], ",", 
+     RowBox[{"-", "c"}], ",", "d"}], "]"}], "\[InvisibleSpace]", "\<\". \"\>",
+    "\[InvisibleSpace]", "\<\"Antisymmetric only in the first pair.\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "Riemann tensor ", 
+   $CellContext`RiemanncdH[-$CellContext`a, -$CellContext`b, -$CellContext`c, \
+$CellContext`d], ". ", "Antisymmetric only in the first pair."],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"symmetric Ricci tensor \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"RiccicdH", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "symmetric Ricci tensor ", 
+   $CellContext`RiccicdH[-$CellContext`a, -$CellContext`b], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData["\<\"** DefCovD:  Contractions of Riemann automatically replaced \
+by Ricci.\"\>"], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"Ricci scalar \"\>", "\[InvisibleSpace]", 
+   RowBox[{"RicciScalarcdH", "[", "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "Ricci scalar ", 
+   $CellContext`RicciScalarcdH[], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData["\<\"** DefCovD:  Contractions of Ricci automatically replaced \
+by RicciScalar.\"\>"], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"symmetric Einstein tensor \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"EinsteincdH", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", 
+   "symmetric Einstein tensor ", 
+   $CellContext`EinsteincdH[-$CellContext`a, -$CellContext`b], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"Weyl tensor \"\>", "\[InvisibleSpace]", 
+   RowBox[{"WeylcdH", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}], ",", 
+     RowBox[{"-", "c"}], ",", 
+     RowBox[{"-", "d"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm["** ", xAct`xTensor`DefTensor, ": Defining ", "Weyl tensor ", 
+   $CellContext`WeylcdH[-$CellContext`a, -$CellContext`b, -$CellContext`c, \
+-$CellContext`d], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"symmetric TFRicci tensor \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"TFRiccicdH", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}]}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "symmetric TFRicci tensor ", 
+   $CellContext`TFRiccicdH[-$CellContext`a, -$CellContext`b], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"Kretschmann scalar \"\>", "\[InvisibleSpace]", 
+   RowBox[{"KretschmanncdH", "[", "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "Kretschmann scalar ", 
+   $CellContext`KretschmanncdH[], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** DefCovD:  Computing RiemannToWeylRules for dim \"\>", 
+   "\[InvisibleSpace]", "4"}],
+  SequenceForm["** DefCovD:  Computing RiemannToWeylRules for dim ", 4],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** DefCovD:  Computing RicciToEinsteinRules for dim \"\>", 
+   "\[InvisibleSpace]", "4"}],
+  SequenceForm["** DefCovD:  Computing RicciToEinsteinRules for dim ", 4],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"weight +2 density \"\>", "\[InvisibleSpace]", 
+   RowBox[{"DetH", "[", "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   "\[InvisibleSpace]", "\<\"Determinant.\"\>"}],
+  SequenceForm[
+  "** ", xAct`xTensor`DefTensor, ": Defining ", "weight +2 density ", 
+   $CellContext`DetH[], ". ", "Determinant."],
+  Editable->False]], "Print"]
+}, Open  ]]
+}, Open  ]],
+
+Cell["\<\
+Make a tensor which is tracefree on some indices with met, and tracefree on \
+some other indices with H\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DefTensor", "[", 
   RowBox[{
-  ":", " "}], "\<\"\[NoBreak]\\!\\({\\(met[\\(\\(\\(\\(-a\\)\\), \
-\\(\\(-b\\)\\)\\)\\)]\\)}\\)\[NoBreak] is not a valid \
-\[NoBreak]\\!\\(\\\"format for TraceFree\\\"\\)\[NoBreak].\"\>"}]], \
-"Message", "MSG"]
+   RowBox[{"W", "[", 
+    RowBox[{"a", ",", "b", ",", "c", ",", "d"}], "]"}], ",", "M4", ",", 
+   RowBox[{"TraceFree", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"a", ",", "b"}], "}"}], ",", "met"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"c", ",", "d"}], "}"}], ",", "H"}], "}"}]}], "}"}]}]}], 
+  "]"}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
+   "\[InvisibleSpace]", "\<\": Defining \"\>", 
+   "\[InvisibleSpace]", "\<\"tensor \"\>", "\[InvisibleSpace]", 
+   RowBox[{"W", "[", 
+    RowBox[{"a", ",", "b", ",", "c", ",", "d"}], "]"}], 
+   "\[InvisibleSpace]", "\<\". \"\>", "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm["** ", xAct`xTensor`DefTensor, ": Defining ", "tensor ", 
+   $CellContext`W[$CellContext`a, $CellContext`b, $CellContext`c, \
+$CellContext`d], ". ", ""],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   Rules \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"17", ",", "18"}], "}"}], 
+   "\[InvisibleSpace]", "\<\" have been declared as DownValues for \"\>", 
+   "\[InvisibleSpace]", "W", "\[InvisibleSpace]", "\<\".\"\>"}],
+  SequenceForm["   Rules ", 
+   Shallow[{17, 18}], 
+   " have been declared as DownValues for ", $CellContext`W, "."],
+  Editable->False]], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   Rules \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+    "1", ",", "2", ",", "3", ",", "4", ",", "5", ",", "6", ",", "7", ",", "8",
+      ",", "9", ",", "10", ",", 
+     RowBox[{"\[LeftSkeleton]", "6", "\[RightSkeleton]"}]}], "}"}], 
+   "\[InvisibleSpace]", "\<\" have been declared as UpValues for \"\>", 
+   "\[InvisibleSpace]", "W", "\[InvisibleSpace]", "\<\".\"\>"}],
+  SequenceForm["   Rules ", 
+   Shallow[{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}], 
+   " have been declared as UpValues for ", $CellContext`W, "."],
+  Editable->False]], "Print"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"W", "[", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "a"}], ",", "c", ",", "d"}], "]"}], ",", 
+   RowBox[{"W", "[", 
+    RowBox[{"a", ",", "b", ",", "c", ",", 
+     RowBox[{"-", "c"}]}], "]"}], ",", 
+   RowBox[{
+    RowBox[{"W", "[", 
+     RowBox[{"a", ",", "b", ",", "c", ",", 
+      RowBox[{"-", "d"}]}], "]"}], 
+    RowBox[{"H", "[", 
+     RowBox[{
+      RowBox[{"-", "c"}], ",", "d"}], "]"}]}]}], "}"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0", ",", 
+   InterpretationBox[
+    StyleBox[GridBox[{
+       {"W", 
+        StyleBox[GridBox[{
+           {"a", "b", "c", " "},
+           {" ", " ", " ", "c"}
+          },
+          GridBoxSpacings->{"Columns" -> {
+              Offset[0.], {
+               Offset[0.034999999999999996`]}, 
+              Offset[0.]}, "ColumnsIndexed" -> {}, "Rows" -> {{
+               Offset[0.]}}, "RowsIndexed" -> {}}],
+         FontSize->Rational[39, 4]]}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Center}}, 
+        "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.034999999999999996`]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}],
+     ShowAutoStyles->False,
+     AutoSpacing->False],
+    $CellContext`W[$CellContext`a, $CellContext`b, $CellContext`c, \
+-$CellContext`c],
+    Editable->False], ",", "0"}], "}"}]], "Output"]
 }, Open  ]],
 
 Cell["Some possible errors:", "Text"],
@@ -988,34 +2361,31 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"DefTensor", "[", 
   RowBox[{
-   RowBox[{"S", "[", "]"}], ",", "M4", ",", 
-   RowBox[{"TraceFree", "\[RuleDelayed]", 
+   RowBox[{"Scal", "[", "]"}], ",", "M4", ",", 
+   RowBox[{"TraceFree", "\[Rule]", 
     RowBox[{"{", 
-     RowBox[{"met", "[", 
-      RowBox[{
-       RowBox[{"-", "a"}], ",", 
-       RowBox[{"-", "b"}]}], "]"}], "}"}]}]}], "]"}]], "Input"],
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}], ",", "met"}], "}"}]}]}], 
+  "]"}]], "Input"],
 
 Cell[BoxData[
  InterpretationBox[
   RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
    "\[InvisibleSpace]", "\<\": Defining \"\>", 
    "\[InvisibleSpace]", "\<\"tensor \"\>", "\[InvisibleSpace]", 
-   RowBox[{"S", "[", "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   RowBox[{"Scal", "[", "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
    "\[InvisibleSpace]", "\<\"\"\>"}],
   SequenceForm["** ", xAct`xTensor`DefTensor, ": Defining ", "tensor ", 
-   $CellContext`S[], ". ", ""],
+   $CellContext`Scal[], ". ", ""],
   Editable->False]], "Print"],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DefTensor", "::", "invalid"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"\[NoBreak]\\!\\({\\(met[\\(\\(\\(\\(-a\\)\\), \
-\\(\\(-b\\)\\)\\)\\)]\\)}\\)\[NoBreak] is not a valid \
-\[NoBreak]\\!\\(\\\"format for TraceFree\\\"\\)\[NoBreak].\"\>"}]], \
-"Message", "MSG"]
+   RowBox[{"TraceFree", "::", "doesntappear"}], "MessageName"], ":", 
+  " ", "\<\"Index \[NoBreak]\\!\\(a\\)\[NoBreak] does not appear in \
+\[NoBreak]\\!\\(Scal[]\\)\[NoBreak].\"\>"}]], "Message", "MSG"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1023,34 +2393,28 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"DefTensor", "[", 
   RowBox[{
-   RowBox[{"S", "[", "a", "]"}], ",", "M4", ",", 
-   RowBox[{"TraceFree", "\[RuleDelayed]", 
+   RowBox[{"Vect", "[", "a", "]"}], ",", "M4", ",", 
+   RowBox[{"TraceFree", "\[Rule]", 
     RowBox[{"{", 
-     RowBox[{"met", "[", 
-      RowBox[{
-       RowBox[{"-", "a"}], ",", 
-       RowBox[{"-", "b"}]}], "]"}], "}"}]}]}], "]"}]], "Input"],
+     RowBox[{"a", ",", "b"}], "}"}]}]}], "]"}]], "Input"],
 
 Cell[BoxData[
  InterpretationBox[
   RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
    "\[InvisibleSpace]", "\<\": Defining \"\>", 
    "\[InvisibleSpace]", "\<\"tensor \"\>", "\[InvisibleSpace]", 
-   RowBox[{"S", "[", "a", "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   RowBox[{"Vect", "[", "a", "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
    "\[InvisibleSpace]", "\<\"\"\>"}],
   SequenceForm["** ", xAct`xTensor`DefTensor, ": Defining ", "tensor ", 
-   $CellContext`S[$CellContext`a], ". ", ""],
+   $CellContext`Vect[$CellContext`a], ". ", ""],
   Editable->False]], "Print"],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DefTensor", "::", "invalid"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"\[NoBreak]\\!\\({\\(met[\\(\\(\\(\\(-a\\)\\), \
-\\(\\(-b\\)\\)\\)\\)]\\)}\\)\[NoBreak] is not a valid \
-\[NoBreak]\\!\\(\\\"format for TraceFree\\\"\\)\[NoBreak].\"\>"}]], \
-"Message", "MSG"]
+   RowBox[{"TraceFree", "::", "doesntappear"}], "MessageName"], ":", 
+  " ", "\<\"Index \[NoBreak]\\!\\(b\\)\[NoBreak] does not appear in \
+\[NoBreak]\\!\\(Vect[a]\\)\[NoBreak].\"\>"}]], "Message", "MSG"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1058,42 +2422,42 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"DefTensor", "[", 
   RowBox[{
-   RowBox[{"S", "[", "a", "]"}], ",", "M4", ",", 
-   RowBox[{"TraceFree", "\[RuleDelayed]", 
+   RowBox[{"Tens", "[", 
+    RowBox[{"a", ",", "b"}], "]"}], ",", "M4", ",", 
+   RowBox[{"TraceFree", "\[Rule]", 
     RowBox[{"{", 
-     RowBox[{"notMet", "[", 
-      RowBox[{
-       RowBox[{"-", "a"}], ",", 
-       RowBox[{"-", "b"}]}], "]"}], "}"}]}]}], "]"}]], "Input"],
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}], ",", "notAMetric"}], "}"}]}]}], 
+  "]"}]], "Input"],
 
 Cell[BoxData[
  InterpretationBox[
   RowBox[{"\<\"** \"\>", "\[InvisibleSpace]", "DefTensor", 
    "\[InvisibleSpace]", "\<\": Defining \"\>", 
    "\[InvisibleSpace]", "\<\"tensor \"\>", "\[InvisibleSpace]", 
-   RowBox[{"S", "[", "a", "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
+   RowBox[{"Tens", "[", 
+    RowBox[{"a", ",", "b"}], "]"}], "\[InvisibleSpace]", "\<\". \"\>", 
    "\[InvisibleSpace]", "\<\"\"\>"}],
   SequenceForm["** ", xAct`xTensor`DefTensor, ": Defining ", "tensor ", 
-   $CellContext`S[$CellContext`a], ". ", ""],
+   $CellContext`Tens[$CellContext`a, $CellContext`b], ". ", ""],
   Editable->False]], "Print"],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DefTensor", "::", "invalid"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"\[NoBreak]\\!\\({\\(notMet[\\(\\(\\(\\(-a\\)\\), \
-\\(\\(-b\\)\\)\\)\\)]\\)}\\)\[NoBreak] is not a valid \
-\[NoBreak]\\!\\(\\\"format for TraceFree\\\"\\)\[NoBreak].\"\>"}]], \
-"Message", "MSG"]
+   RowBox[{"TraceFree", "::", "invalid"}], "MessageName"], ":", 
+  " ", "\<\"\[NoBreak]\\!\\({\\(\\({a, b}\\)\\), notAMetric}\\)\[NoBreak] is \
+not a valid \[NoBreak]\\!\\(\\\"format for \
+TraceFree\\\"\\)\[NoBreak].\"\>"}]], "Message", "MSG"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
 AutoGeneratedPackage->Automatic,
 WindowToolbars->{},
-WindowSize->{1440, 852},
-WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowSize->{1232, 783},
+WindowMargins->{{62, Automatic}, {Automatic, 106}},
 Visible->True,
 PrivateNotebookOptions->{"FileOutlineCache"->False,
 "VersionedStylesheet"->{"Default.nb"[8.] -> False}},

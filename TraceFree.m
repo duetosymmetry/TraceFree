@@ -20,7 +20,7 @@
 
 
 xAct`TraceFree`$xTensorVersionExpected={"1.0.5",{2013,1,27}};
-xAct`TraceFree`$Version={"0.1.0",{2013,10,30}}
+xAct`TraceFree`$Version={"0.1.0",{2013,11,12}}
 
 
 (* TraceFree: Make tensors trace-free at definition time *)
@@ -90,7 +90,17 @@ Print["These packages come with ABSOLUTELY NO WARRANTY; for details type Disclai
 Print[xAct`xCore`Private`bars]]
 
 
-TraceFree::usage="TraceFree is an option for DefTensor to declare a tensor trace-free. Use TraceFree:>{metricg[-a,-b],...} to declare that the contraction using metricg on indices (+a,+b) vanishes. Use delta[-a,+b] for a trace without metric.";
+TraceFree::usage="TraceFree is an option for DefTensor to declare a tensor trace-free. Use TraceFree->{{{a,b},metricg},...} to declare that the contraction using metricg on indices (-a,-b) vanishes. Use delta for a trace without metric. See TraceFreeRules for usage details.";
+
+
+TraceFreeRules::usage="TraceFreeRules[tensor[inds],{a,b},met] returns a list of rules which make tensor[inds] tracefree on indices {a,b} using metric met for contraction. a,b must both appear in inds and be from the same VBundle. met can either be a metric, inverse metric, or delta. Other input forms:
+TraceFreeRules[tensor[inds],{{{a1,b1},met1},{{a2,b2},met2},...}] returns the Union of all rules from each metric-and-index-pair.
+TraceFreeRules[tensor[inds],{a,b,...},met] makes tensor tracefree on every pair of indices from {a,b,...}.
+TraceFreeRules[tensor[inds],{a,b},{met1,met2,...}] uses every metric in the list on the set of indices {a,b}. Can be combined with above.
+TraceFreeRules[tensor[inds],{a,...}] uses the First metric from the VBundle of {a,...}.";
+
+
+SetTraceFreeRules::usage="SetTraceFreeRules[tensor[inds],arguments...] uses AutomaticRules to make the rules from TraceFreeRules[tensor[inds],arguments] automatic. See TraceFreeRules.";
 
 
 Begin["`Private`"]
@@ -99,28 +109,128 @@ Begin["`Private`"]
 (****************************** 2. Main code for TraceFree *****************************)
 
 
+FirstMetricQ[met_?MetricQ]:=met===First@MetricsOfVBundle@VBundleOfMetric@met;
+
+
+InverseMetricQ[x_?xTensorQ]:=Length@TensorID[x]>0&&First@TensorID[x]===xAct`xTensor`Private`InvMetric;
+InverseMetricQ[delta]:=False; (* This is a bug in xTensor 1.0.5 and earlier: TensorID@delta Throws a Message *)
+InverseMetricQ[_]:=False;
+
+
+Inv[imet_?InverseMetricQ]:=MasterOf@imet;
+
+
+IndexPos[list_List,ind_]:=Position[list,ind,{1},Heads->False]
+
+
+ALIndexQ[x_]:=AIndexQ[x]||LIndexQ[x]
+
+
+NoDummiesQ[tensor_[inds___?ALIndexQ]]:=IndicesOf[Dummy][tensor[inds]]===IndexList[]
+NoDummiesQ[_]:=False;
+HasDummiesQ[x_]:=!NoDummiesQ[x]
+
+
+MakeLIPatternRule={LI[x_]:>LI[_]};
+
+
+TraceFree::dummies="Tensor must be given with no dummies (no internal contractions).";
+TraceFree::sameVBinds="Indices `1` and `2` are not on the same VBundle.";
+TraceFree::deltaCharacter="When using delta, exactly one index must be up and one index down.";
+TraceFree::sameVBmet="Indices `1` and `2` are not from the VBundle of metric `3`.";
+TraceFree::doesntappear="Index `1` does not appear in `2`.";
+
+
+CheckMetInds[{a_?AIndexQ,b_?AIndexQ},met_?MetricQ]:=If[VBundleOfIndex[a]!=VBundleOfMetric[met],Throw@Message[TraceFree::sameVBmet,a,b,met]];;
+CheckMetInds[{a_?AIndexQ,b_?AIndexQ},met_?InverseMetricQ]:=CheckMetInds[{a,b},Inv@met];
+CheckMetInds[{a_?AIndexQ,b_?AIndexQ},delta]:=If[(DownIndexQ[a]&&DownIndexQ[b])||(UpIndexQ[a]&&UpIndexQ[b]),Throw@Message[TraceFree::deltaCharacter]];
+
+
+CheckTraceFreeRules[tensor_[inds___?ALIndexQ],{a_?AIndexQ,b_?AIndexQ},met:_?MetricQ|_?InverseMetricQ|delta]:=Block[{},
+If[HasDummiesQ[tensor[inds]],
+Throw@Message[TraceFree::dummies]];
+
+If[VBundleOfIndex[a]!=VBundleOfIndex[b],
+Throw@Message[TraceFree::sameVBinds,a,b]];
+
+If[Length@IndexPos[{inds},a]==0,
+Throw@Message[TraceFree::doesntappear,a,tensor[inds]]];
+If[Length@IndexPos[{inds},b]==0,
+Throw@Message[TraceFree::doesntappear,b,tensor[inds]]];
+
+CheckMetInds[{a,b},met];
+
+];
+
+
+TraceFreeRules[tens_,{inds__?AIndexQ}]/;(Length[{inds}]>=2)&&(1==Length@Union[VBundleOfIndex/@{inds}]):=Module[{metrics=MetricsOfVBundle@VBundleOfIndex@First@{inds}},TraceFreeRules[tens,{inds},First@metrics]/;(Length@metrics>=1)]
+
+
+TraceFreeRules[tens_,{{inds__?AIndexQ},met_}]:=TraceFreeRules[tens,{inds},met];
+TraceFreeRules[tens_,arguments:{{_,_}..}]:=Union@@(TraceFreeRules[tens,#]&/@arguments);
+
+
+TraceFreeRules[tens_,slots_,metrics_List]:=Union@@(TraceFreeRules[tens,slots,#]&/@metrics)
+
+
+TraceFreeRules[tens_,slots_List?(Length[#]>2&),met_]:=Union@@(TraceFreeRules[tens,#,met]&/@Subsets[slots,{2}])
+
+
+TraceFreeRules[tensor_?xTensorQ[inds___?ALIndexQ],{a_?AIndexQ,b_?AIndexQ},met:_?MetricQ|_?InverseMetricQ|delta]:=
+With[{tensWithLIPats=tensor[inds]/.MakeLIPatternRule},
+
+(* Checks *)
+CheckTraceFreeRules[tensor[inds],{a,b},met];
+
+(* Except in the case of delta, we need rules with met appearing explicitly. *)
+With[{metExplicitRules=If[met===delta,{},MakeRule[{tensWithLIPats met[ChangeIndex@a,ChangeIndex@b],0},PatternIndices->All,MetricOn->All,Evaluate->False,UseSymmetries->True]]},
+
+(* If we have a metric or not, generate rules without met (whether met is delta or not, this is handled the same with ContractMetric *)
+With[{contractedRules=MakeRule[{Evaluate@ContractMetric[tensWithLIPats met[ChangeIndex@a,ChangeIndex@b]],0},PatternIndices->All,MetricOn->All,Evaluate->False,UseSymmetries->True]},
+(* We can also slightly simplify the rules because we know their structure *)
+(* This is the final result *)
+Join[metExplicitRules,contractedRules]/.(x_:>_):>(x:>0)//Union
+]
+]
+];
+
+
+SetTraceFreeRules[tens_,rest__]:=With[{subhead=SubHead@tens},
+AutomaticRules[subhead,TraceFreeRules[tens,rest]]]
+
+
 If[FreeQ[First/@Options[DefTensor],TraceFree],
 Unprotect[DefTensor];
-Options[DefTensor]=Append[Options[DefTensor],TraceFree:>{}];
+Options[DefTensor]=Append[Options[DefTensor],TraceFree->{}];
 Protect[DefTensor];];
 
 
-DefTensor::BadTraceFreeXXX="XXX";
+(* Two argument forms -- convert to three argument forms *)
+(* Using First metric, if there is one *)
+CheckTraceFree[tens_,{inds__?AIndexQ}]/;(Length[{inds}]>=2)&&(1==Length@Union[VBundleOfIndex/@{inds}]):=Module[{metrics=MetricsOfVBundle@VBundleOfIndex@First@{inds}},CheckTraceFree[tens,{inds},First@metrics]/;(Length@metrics>=1)];
+(* Convert to three argument form *)
+CheckTraceFree[tens_,{{inds__?AIndexQ},met_}]:=CheckTraceFree[tens,{inds},met];
+CheckTraceFree[tens_,arguments:{{_,_}..}]:=CheckTraceFree[tens,#]&/@arguments;
 
-
-CheckTraceFree[tensor_[inds___],tf:{XXX}]:=Module[{XXX},
-XXX
+(* Three argument forms *)
+(* Thread over metrics *)
+CheckTraceFree[tens_,slots_,metrics_List]:=CheckTraceFree[tens,slots,#]&/@metrics;
+(* Thread over several indices *)
+CheckTraceFree[tens_,slots_?(Length[#]>2&),metric_]:=CheckTraceFree[tens,#,metric]&/@Subsets[slots,{2}];
+CheckTraceFree[tens_,{a_?AIndexQ,b_?AIndexQ},met:_?MetricQ|_?InverseMetricQ|delta]:=Module[{},
+(* Now use CheckTraceFreeRules for the logic *)
+CheckTraceFreeRules[tens,{a,b},met];
 ];
-CheckTraceFree[_,tf_]:=Throw@Message[DefTensor::invalid,tf,"format for TraceFree"];
+CheckTraceFree[tens_,rest__]:=Throw@Message[TraceFree::invalid,{rest},"format for TraceFree"];
 
 
 (* Check the input *)
 DefTensorBeginning[head_[indices___],dependencies_,sym_,options___]:=Module[{tf=OptionValue[DefTensor,{options},TraceFree]},
-CheckTraceFree[head[indices],tf];
+If[tf=!={},CheckTraceFree[head[indices],tf]];
 ];
-(* Here we do the actual work *)
+(* Call SetTraceFreeRules *)
 DefTensorEnd[head_[indices___],dependencies_,sym_,options___]:=Module[{tf=OptionValue[DefTensor,{options},TraceFree]},
-XXX;
+If[tf=!={},SetTraceFreeRules[head[indices],tf]];
 ];
 
 
