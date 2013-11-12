@@ -1,3 +1,3 @@
 (* ::Package:: *)
 
-Get["xAct/DivFree/DivFree.m"]
+Get["xAct/TraceFree/TraceFree.m"]
